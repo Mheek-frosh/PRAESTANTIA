@@ -30,11 +30,13 @@ function IconX({ className }: { className?: string }) {
 }
 
 const quick = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#projects", label: "Portfolio" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#contact", label: "Contact" },
+  { href: "/our-company", label: "Our Company" },
+  { href: "/team", label: "Our Team" },
+  { href: "/careers", label: "Careers" },
+  { href: "/#services", label: "Services" },
+  { href: "/#projects", label: "Portfolio" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 /**

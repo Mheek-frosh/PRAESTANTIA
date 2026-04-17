@@ -1,38 +1,64 @@
 "use client";
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { company } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
-const links = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#projects", label: "Projects" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#technology", label: "Technology" },
-  { href: "#contact", label: "Contact" },
-];
+const aboutChildren = [
+  { href: "/our-company", label: "Our Company" },
+  { href: "/team", label: "Our Team" },
+  { href: "/careers", label: "Careers" },
+] as const;
+
+const sectionLinks = [
+  { href: "/#services", label: "Services" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#why-us", label: "Why Us" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#technology", label: "Technology" },
+  { href: "/#contact", label: "Contact" },
+] as const;
 
 function heroThresholdPx() {
   if (typeof window === "undefined") return 720;
   return Math.min(window.innerHeight * 0.78, 920);
 }
 
+function navLinkClass(onHero: boolean, extra = "") {
+  return `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${extra} ${
+    onHero
+      ? "text-white/85 hover:bg-white/10 hover:text-white"
+      : "text-[var(--muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--foreground)]"
+  }`;
+}
+
+function dropdownItemClass(onHero: boolean) {
+  return `block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
+    onHero
+      ? "text-slate-900 hover:bg-emerald-50"
+      : "text-[var(--foreground)] hover:bg-[var(--glass-bg)]"
+  }`;
+}
+
 /**
- * Sticky nav: transparent on hero (light text), solid bar after scroll — PremPlus-style.
+ * Sticky nav: transparent on home hero; About dropdown; section links work from any route.
  */
 export function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const { setTheme, resolvedTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { scrollY } = useScroll();
+  const aboutRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
@@ -61,19 +87,48 @@ export function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
+    const id = requestAnimationFrame(() => {
+      setAboutOpen(false);
+      setOpen(false);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!aboutOpen) return;
+    const close = (e: MouseEvent) => {
+      if (aboutRef.current && !aboutRef.current.contains(e.target as Node)) {
+        setAboutOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [aboutOpen]);
+
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        setAboutOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
-  const onHero = !pastHero;
+  const onHero = isHome && !pastHero;
+
+  const dropdownPanelClass = onHero
+    ? "border border-slate-200/90 bg-white/98 text-slate-900 shadow-xl backdrop-blur-xl"
+    : "border border-[var(--glass-border)] bg-[var(--surface-elevated)] text-[var(--foreground)] shadow-xl backdrop-blur-xl";
+
+  const toggleAbout = useCallback(() => {
+    setAboutOpen((v) => !v);
+  }, []);
 
   return (
     <>
@@ -92,7 +147,7 @@ export function Navbar() {
                 : "border-transparent bg-transparent text-[var(--foreground)]"
           }`}
         >
-          <Link href="#hero" className="group flex min-w-0 shrink items-center gap-2 sm:gap-3">
+          <Link href="/" className="group flex min-w-0 shrink items-center gap-2 sm:gap-3">
             <span
               className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border text-sm font-semibold shadow-sm backdrop-blur-md sm:h-11 sm:w-11 ${
                 onHero
@@ -116,17 +171,46 @@ export function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+            <div className="relative" ref={aboutRef}>
+              <button
+                type="button"
+                aria-expanded={aboutOpen}
+                aria-haspopup="menu"
+                onClick={toggleAbout}
+                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   onHero
                     ? "text-white/85 hover:bg-white/10 hover:text-white"
                     : "text-[var(--muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--foreground)]"
                 }`}
               >
+                About
+                <ChevronDown
+                  className={`h-4 w-4 shrink-0 transition-transform ${aboutOpen ? "rotate-180" : ""}`}
+                  aria-hidden
+                />
+              </button>
+              {aboutOpen ? (
+                <div
+                  role="menu"
+                  className={`absolute left-0 top-full z-[80] mt-2 min-w-[13.5rem] overflow-hidden rounded-xl py-1.5 ${dropdownPanelClass}`}
+                >
+                  {aboutChildren.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      role="menuitem"
+                      className={dropdownItemClass(onHero)}
+                      onClick={() => setAboutOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+            {sectionLinks.map((l) => (
+              <Link key={l.href} href={l.href} className={navLinkClass(onHero)}>
                 {l.label}
               </Link>
             ))}
@@ -152,7 +236,7 @@ export function Navbar() {
               )}
             </button>
             <Link
-              href="#contact"
+              href="/#contact"
               className={`hidden min-h-[44px] items-center rounded-xl px-4 py-2 text-sm font-semibold shadow-lg transition sm:inline-flex ${
                 onHero
                   ? "bg-emerald-500 text-white hover:bg-emerald-400"
@@ -210,7 +294,21 @@ export function Navbar() {
           </button>
         </div>
         <div className="flex min-h-0 flex-1 flex-col gap-1">
-          {links.map((l) => (
+          <p className="px-3 pb-1 pt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">
+            About
+          </p>
+          {aboutChildren.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="flex min-h-[48px] items-center rounded-xl px-3 py-3 pl-5 text-base font-medium text-[var(--foreground)] hover:bg-[var(--glass-bg)]"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="my-3 border-t border-[var(--glass-border)]" />
+          {sectionLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -221,7 +319,7 @@ export function Navbar() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/#contact"
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[var(--accent-foreground)]"
           >

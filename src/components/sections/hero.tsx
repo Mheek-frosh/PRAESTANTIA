@@ -155,14 +155,14 @@ export function Hero() {
           transition={{ delay: 0.18, duration: 0.5, ease: easeOutExpo }}
         >
           <Link
-            href="#contact"
+            href="/#contact"
             className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-emerald-500 px-8 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_-12px_rgba(16,185,129,0.5)] transition hover:bg-emerald-400 sm:flex-initial sm:min-w-[160px]"
           >
             Get started
             <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
           <Link
-            href="#about"
+            href="/our-company"
             className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15 sm:flex-initial sm:min-w-[160px]"
           >
             Learn more
