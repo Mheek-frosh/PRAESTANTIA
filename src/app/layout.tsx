@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import { RootShell } from "@/components/providers/root-shell";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { company } from "@/data/site";
 
@@ -95,7 +96,7 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <RootShell>{children}</RootShell>
         </ThemeProvider>
       </body>
     </html>

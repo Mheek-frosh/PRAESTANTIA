@@ -6,14 +6,9 @@ import { easeOutExpo } from "@/lib/motion";
 
 const SESSION_KEY = "praestantia_intro_seen";
 
-function shouldSkipIntroForThisNavigation(): boolean {
+function shouldSkipIntro(): boolean {
   if (typeof window === "undefined") return false;
   try {
-    const entry = performance.getEntriesByType(
-      "navigation",
-    )[0] as PerformanceNavigationTiming | undefined;
-    // Full reload (F5, dev refresh): always play intro so the loader is visible again.
-    if (entry?.type === "reload") return false;
     return sessionStorage.getItem(SESSION_KEY) === "1";
   } catch {
     return false;
@@ -21,8 +16,9 @@ function shouldSkipIntroForThisNavigation(): boolean {
 }
 
 /**
- * Premium session intro on a white canvas — once per tab session for normal navigations;
- * runs again on reload so refresh/dev always sees the intro.
+ * Premium intro on a white canvas — once per browser tab after the animation
+ * completes; skipped on in-app navigations because `RootShell` keeps this
+ * component mounted. Same tab reload skips after the first run.
  */
 export function PageLoader() {
   const [visible, setVisible] = useState(true);
@@ -46,7 +42,7 @@ export function PageLoader() {
     };
 
     const id = requestAnimationFrame(() => {
-      if (shouldSkipIntroForThisNavigation()) {
+      if (shouldSkipIntro()) {
         setVisible(false);
         return;
       }
