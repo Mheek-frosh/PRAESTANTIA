@@ -121,7 +121,7 @@ export function Contact() {
               <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[var(--accent)] px-6 py-3.5 text-sm font-semibold text-[var(--accent-foreground)] shadow-[0_16px_50px_-18px_rgba(201,162,39,0.55)] transition hover:brightness-110"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[var(--accent)] px-6 py-3.5 text-sm font-semibold text-[var(--accent-foreground)] shadow-[0_16px_50px_-18px_rgba(5,150,105,0.45)] transition hover:brightness-110"
                 >
                   <Send className="h-4 w-4" />
                   Request a conversation

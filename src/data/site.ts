@@ -1,7 +1,9 @@
 /**
  * Central content for Praestantia Projects Ltd.
- * Update copy, services, and portfolio entries here.
+ * Stock imagery URLs live in `./media` — swap for owned assets when ready.
  */
+
+import { media } from "@/data/media";
 
 export const company = {
   name: "Praestantia Projects Ltd",
@@ -20,7 +22,8 @@ export const projects: {
   category: ProjectCategory;
   summary: string;
   year: string;
-  image: string;
+  /** Remote image URL (Unsplash). */
+  imageSrc: string;
 }[] = [
   {
     id: "1",
@@ -29,8 +32,7 @@ export const projects: {
     summary:
       "Design-build supervision for dual-carriageway upgrades with smart drainage and resilient pavement systems.",
     year: "2024",
-    image:
-      "linear-gradient(135deg, #0f2744 0%, #1e3a5f 50%, #c9a22733 100%)",
+    imageSrc: media.projects.p1,
   },
   {
     id: "2",
@@ -39,8 +41,7 @@ export const projects: {
     summary:
       "Integrated SCADA-ready monitoring, telemetry dashboards, and incident workflows for regional utilities.",
     year: "2023",
-    image:
-      "linear-gradient(135deg, #030712 0%, #0a2744 40%, #3b82f6 100%)",
+    imageSrc: media.projects.p2,
   },
   {
     id: "3",
@@ -49,8 +50,7 @@ export const projects: {
     summary:
       "Zero-trust architecture, identity governance, and continuous compliance monitoring for a public-sector cloud estate.",
     year: "2024",
-    image:
-      "linear-gradient(135deg, #0c1222 0%, #1a2744 60%, #c9a22755 100%)",
+    imageSrc: media.projects.p3,
   },
   {
     id: "4",
@@ -59,8 +59,7 @@ export const projects: {
     summary:
       "End-to-end ERP integration with offline-capable mobile workforce apps for distributed operations.",
     year: "2023",
-    image:
-      "linear-gradient(135deg, #111827 0%, #1e3a8a 50%, #6366f1 100%)",
+    imageSrc: media.projects.p4,
   },
   {
     id: "5",
@@ -69,8 +68,7 @@ export const projects: {
     summary:
       "Lot tracking, cold-chain sensors, and export documentation automation for a multi-site processing network.",
     year: "2024",
-    image:
-      "linear-gradient(135deg, #14532d 0%, #0f2744 55%, #c9a22744 100%)",
+    imageSrc: media.projects.p5,
   },
   {
     id: "6",
@@ -79,8 +77,7 @@ export const projects: {
     summary:
       "Satellite-assisted scheduling, soil analytics, and farmer dashboards for a large cooperative program.",
     year: "2022",
-    image:
-      "linear-gradient(135deg, #064e3b 0%, #0a1628 70%, #22c55e33 100%)",
+    imageSrc: media.projects.p6,
   },
 ];
 
@@ -93,6 +90,7 @@ export const services = [
     details:
       "From feasibility and detailed design through construction supervision, we align international standards with local context—ensuring safety, schedule discipline, and measurable outcomes on high-stakes projects.",
     icon: "HardHat" as const,
+    coverSrc: media.services.engineering,
   },
   {
     id: "pm",
@@ -102,6 +100,7 @@ export const services = [
     details:
       "We deploy PMI-aligned frameworks with pragmatic reporting cadences tailored for government and enterprise sponsors—so decisions are timely, transparent, and audit-ready.",
     icon: "Kanban" as const,
+    coverSrc: media.services.pm,
   },
   {
     id: "ict",
@@ -111,6 +110,7 @@ export const services = [
     details:
       "Our engineering teams build cloud-native applications, APIs, and data pipelines with security-first defaults—designed for reliability under real-world Nigerian connectivity and compliance constraints.",
     icon: "Code2" as const,
+    coverSrc: media.services.ict,
   },
   {
     id: "cyber",
@@ -120,6 +120,7 @@ export const services = [
     details:
       "We implement defense-in-depth across endpoints, networks, and cloud estates—backed by continuous monitoring patterns and incident readiness aligned to enterprise expectations.",
     icon: "ShieldCheck" as const,
+    coverSrc: media.services.cyber,
   },
   {
     id: "agro",
@@ -129,6 +130,7 @@ export const services = [
     details:
       "We combine agronomy-aware process design with digital traceability so agribusiness partners can scale quality, reduce waste, and unlock export-grade compliance.",
     icon: "Sprout" as const,
+    coverSrc: media.services.agro,
   },
   {
     id: "consulting",
@@ -138,6 +140,7 @@ export const services = [
     details:
       "We partner with institutions to structure programs, mobilize consortiums, and execute turnkey outcomes—bridging policy intent with field-level delivery.",
     icon: "Landmark" as const,
+    coverSrc: media.services.consulting,
   },
 ];
 
@@ -178,3 +181,5 @@ export const capabilities = [
     body: "Threat modeling, hardening roadmaps, and operational security programs that scale.",
   },
 ];
+
+export { media };

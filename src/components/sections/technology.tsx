@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Brain, Cloud, Code, Lock } from "lucide-react";
+import { media } from "@/data/media";
 import { capabilities } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
 const icons = [Code, Cloud, Brain, Lock];
 
 /**
- * Technology pillars — software, cloud, AI readiness, and security.
+ * Technology pillars with a wide editorial banner (PremPlus-style visual rhythm).
  */
 export function Technology() {
   return (
@@ -17,13 +19,34 @@ export function Technology() {
       className="relative border-t border-[var(--glass-border)] bg-[var(--section-bg)] py-24 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+        <motion.div
+          className="relative mb-14 aspect-[21/9] overflow-hidden rounded-3xl border border-[var(--glass-border)] bg-slate-900 shadow-[var(--card-shadow)] sm:mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, ease: easeOutExpo }}
+        >
+          <Image
+            src={media.technologyBanner}
+            alt=""
+            fill
+            sizes="(max-width: 1200px) 100vw, 1152px"
+            className="object-cover opacity-95"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/90 via-[#020617]/55 to-emerald-900/35" />
+          <p className="absolute bottom-6 left-6 max-w-md text-sm font-medium leading-relaxed text-white/95 sm:bottom-8 sm:left-8 sm:text-base">
+            Global-grade platforms — engineered for Nigerian operating realities,
+            security posture, and long-term maintainability.
+          </p>
+        </motion.div>
+
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <motion.div
             className="lg:col-span-5"
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: easeOutExpo }}
           >
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
               Technology & capabilities

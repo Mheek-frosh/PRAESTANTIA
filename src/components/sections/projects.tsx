@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { projects, type ProjectCategory } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
@@ -13,7 +14,7 @@ const filters: ("All" | ProjectCategory)[] = [
 ];
 
 /**
- * Filterable portfolio grid with mock engagements for credibility framing.
+ * Portfolio grid with photography — PremPlus-style featured project cards.
  */
 export function Projects() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
@@ -44,12 +45,11 @@ export function Projects() {
               Portfolio
             </p>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
-              Representative programs
+              Featured programs
             </h2>
             <p className="mt-4 text-base text-[var(--muted)] sm:text-lg">
-              Mock case studies illustrate the breadth of our delivery footprint
-              across infrastructure, technology, and agriculture—structured the
-              way we present to boards and public sponsors.
+              Representative engagements across infrastructure, technology, and
+              agriculture — presented the way we brief boards and public sponsors.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -61,7 +61,7 @@ export function Projects() {
                 className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition ${
                   filter === f
                     ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--accent-foreground)]"
-                    : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--muted)] hover:border-[var(--accent)]/35 hover:text-[var(--foreground)]"
+                    : "border-[var(--glass-border)] bg-[var(--card-bg)] text-[var(--muted)] hover:border-[var(--accent)]/35 hover:text-[var(--foreground)]"
                 }`}
               >
                 {f}
@@ -80,17 +80,21 @@ export function Projects() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: easeOutExpo }}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] backdrop-blur-xl"
+                className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)]"
               >
-                <div
-                  className="relative h-40 w-full overflow-hidden"
-                  style={{ backgroundImage: p.image }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(3,7,18,0.85)] to-transparent" />
-                  <span className="absolute left-4 top-4 inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-md">
+                <div className="relative h-48 w-full overflow-hidden bg-slate-200">
+                  <Image
+                    src={p.imageSrc}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/90 via-[#020617]/25 to-transparent" />
+                  <span className="absolute left-4 top-4 inline-flex rounded-full border border-white/20 bg-emerald-500/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white shadow-sm backdrop-blur-sm">
                     {p.category}
                   </span>
-                  <span className="absolute bottom-4 left-4 text-xs font-medium text-white/80">
+                  <span className="absolute bottom-4 left-4 text-xs font-medium text-white/90">
                     {p.year}
                   </span>
                 </div>
@@ -102,7 +106,7 @@ export function Projects() {
                     {p.summary}
                   </p>
                   <span className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-                    Confidential engagement profile
+                    Case profile — illustrative
                   </span>
                 </div>
               </motion.article>

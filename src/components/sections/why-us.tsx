@@ -60,7 +60,7 @@ export function WhyUs() {
                 <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
                   {item.body}
                 </p>
-                <div className="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)]" />
+                <div className="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,rgba(5,150,105,0.14),transparent_70%)]" />
               </motion.div>
             );
           })}

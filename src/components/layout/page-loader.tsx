@@ -25,7 +25,7 @@ export function PageLoader() {
         >
           <div className="flex flex-col items-center gap-6">
             <motion.div
-              className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[0_20px_80px_-20px_rgba(201,162,39,0.35)] backdrop-blur-xl"
+              className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[0_20px_80px_-20px_rgba(5,150,105,0.35)] backdrop-blur-xl"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: easeOutExpo }}
