@@ -102,16 +102,16 @@ export function Navbar() {
             >
               P
             </span>
-            <span className="hidden flex-col leading-tight sm:flex">
+            <span className="flex min-w-0 flex-col leading-tight">
               <span
-                className={`text-sm font-semibold tracking-tight ${onHero ? "text-white" : "text-[var(--foreground)]"}`}
+                className={`truncate text-xs font-semibold tracking-tight sm:text-sm ${onHero ? "text-white" : "text-[var(--foreground)]"}`}
               >
                 {company.name.split(" ")[0]}
               </span>
               <span
-                className={`text-[11px] font-medium uppercase tracking-[0.2em] ${onHero ? "text-white/65" : "text-[var(--muted)]"}`}
+                className={`truncate text-[10px] font-medium uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-[0.2em] ${onHero ? "text-white/65" : "text-[var(--muted)]"}`}
               >
-                Projects Ltd
+                {company.name.split(" ").slice(1).join(" ")}
               </span>
             </span>
           </Link>
