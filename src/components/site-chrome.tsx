@@ -1,5 +1,6 @@
 "use client";
 
+import { AssistantChat } from "@/components/assistant/assistant-chat";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { PageLoader } from "@/components/layout/page-loader";
@@ -29,6 +30,7 @@ export function SiteChrome() {
         <Contact />
       </main>
       <Footer />
+      <AssistantChat />
     </>
   );
 }

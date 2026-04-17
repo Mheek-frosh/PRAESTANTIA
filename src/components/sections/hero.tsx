@@ -4,27 +4,55 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
 import { company, media } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
+const SLIDES = [...media.heroCarousel];
+const INTERVAL_MS = 6500;
+
 /**
- * Full-bleed hero (PremPlus-style): photography, dark overlay, white type, primary CTA.
+ * Full-bleed hero with a slow crossfade carousel, dark overlay, and white type.
  */
 export function Hero() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const t = window.setInterval(
+      () => setActive((i) => (i + 1) % SLIDES.length),
+      INTERVAL_MS,
+    );
+    return () => window.clearInterval(t);
+  }, []);
+
   return (
     <section
       id="hero"
       className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden pb-24 pt-32 sm:pb-28 sm:pt-36 lg:pb-32"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <Image
-          src={media.hero}
-          alt="Infrastructure and sustainable energy — solar installation aerial view"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+        {SLIDES.map((src, i) => (
+          <motion.div
+            key={src}
+            className="absolute inset-0"
+            initial={false}
+            animate={{
+              opacity: i === active ? 1 : 0,
+              scale: i === active ? 1.06 : 1,
+            }}
+            transition={{ duration: 1.45, ease: easeOutExpo }}
+          >
+            <Image
+              src={src}
+              alt=""
+              fill
+              priority={i === 0}
+              loading={i === 0 ? "eager" : "lazy"}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </motion.div>
+        ))}
         <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#0f172a]/88 to-[#0f172a]/55" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(5,150,105,0.22),transparent_55%)]" />
         <div
@@ -96,8 +124,28 @@ export function Hero() {
           </Link>
         </motion.div>
 
+        <div
+          className="mt-8 flex items-center justify-center gap-2 sm:justify-start"
+          role="tablist"
+          aria-label="Hero background slides"
+        >
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              aria-selected={i === active}
+              onClick={() => setActive(i)}
+              className={`relative h-2 rounded-full transition-all duration-500 ease-out ${
+                i === active ? "w-9 bg-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.45)]" : "w-2 bg-white/35 hover:bg-white/55"
+              }`}
+              aria-label={`Background image ${i + 1} of ${SLIDES.length}`}
+            />
+          ))}
+        </div>
+
         <motion.dl
-          className="mt-14 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6"
+          className="mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.32, duration: 0.55 }}

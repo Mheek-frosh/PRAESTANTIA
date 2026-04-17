@@ -8,6 +8,14 @@ const q = "auto=format&fit=crop";
 export const media = {
   /** Hero: solar / sustainable infrastructure (energy-adjacent, boardroom-safe). */
   hero: `https://images.unsplash.com/photo-1509391366360-2e959784a478?${q}&w=2400&q=85`,
+  /** Full-bleed hero carousel — crossfades in `Hero`. */
+  heroCarousel: [
+    `https://images.unsplash.com/photo-1509391366360-2e959784a478?${q}&w=2400&q=85`,
+    `https://images.unsplash.com/photo-1486406146926-c627a92ad1cc?${q}&w=2400&q=85`,
+    `https://images.unsplash.com/photo-1541888946425-d81bb19240f5?${q}&w=2400&q=85`,
+    `https://images.unsplash.com/photo-1451187580459-43490279c0fa?${q}&w=2400&q=85`,
+    `https://images.unsplash.com/photo-1500382017468-9049fed747ef?${q}&w=2400&q=85`,
+  ] as const,
   /** About: leadership / collaboration. */
   about: `https://images.unsplash.com/photo-1522071820081-009f0129c71c?${q}&w=1400&q=80`,
   /** Technology strip: data / global systems. */
