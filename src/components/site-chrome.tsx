@@ -10,6 +10,7 @@ import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
 import { Services } from "@/components/sections/services";
 import { Technology } from "@/components/sections/technology";
+import { Testimonials } from "@/components/sections/testimonials";
 import { WhyUs } from "@/components/sections/why-us";
 
 /**
@@ -26,6 +27,7 @@ export function SiteChrome() {
         <Services />
         <Projects />
         <WhyUs />
+        <Testimonials />
         <Technology />
         <Contact />
       </main>

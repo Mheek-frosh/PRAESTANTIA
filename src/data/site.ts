@@ -163,6 +163,47 @@ export const whyUs = [
   },
 ];
 
+export const testimonials: {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+  organization: string;
+}[] = [
+  {
+    id: "t1",
+    quote:
+      "Praestantia brought the discipline we expect from international firms—clear governance, transparent reporting, and delivery that held under ministerial scrutiny.",
+    name: "Dr. Adaeze Okafor",
+    role: "Program Director",
+    organization: "Federal infrastructure programme",
+  },
+  {
+    id: "t2",
+    quote:
+      "Their team bridged engineering and digital in a way our previous vendors could not. We finally had one accountable partner across design, build, and handover.",
+    name: "Michael Bello",
+    role: "Chief Operating Officer",
+    organization: "National utilities consortium",
+  },
+  {
+    id: "t3",
+    quote:
+      "From cybersecurity hardening to field mobility, the quality of documentation and stakeholder alignment exceeded our board’s expectations.",
+    name: "Yewande Adeyemi",
+    role: "Head of Enterprise Technology",
+    organization: "Lagos-headquartered financial group",
+  },
+  {
+    id: "t4",
+    quote:
+      "On our agro-processing expansion, Praestantia combined operational realism with modern traceability—export readiness became achievable, not theoretical.",
+    name: "Ibrahim Musa",
+    role: "Managing Director",
+    organization: "Multi-site agro-industrial network",
+  },
+];
+
 export const capabilities = [
   {
     title: "Software development",

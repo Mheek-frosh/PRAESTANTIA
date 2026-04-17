@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { company, media } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
@@ -12,18 +12,50 @@ const SLIDES = [...media.heroCarousel];
 const INTERVAL_MS = 6500;
 
 /**
- * Full-bleed hero with crossfade carousel — tuned for small screens (safe areas, type scale, touch targets).
+ * Full-bleed hero with crossfade carousel, prev/next controls, and dots.
  */
 export function Hero() {
   const [active, setActive] = useState(0);
+  const [autoplayKey, setAutoplayKey] = useState(0);
+
+  const bumpAutoplay = useCallback(() => {
+    setAutoplayKey((k) => k + 1);
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setActive((i) => (i - 1 + SLIDES.length) % SLIDES.length);
+    bumpAutoplay();
+  }, [bumpAutoplay]);
+
+  const goNext = useCallback(() => {
+    setActive((i) => (i + 1) % SLIDES.length);
+    bumpAutoplay();
+  }, [bumpAutoplay]);
 
   useEffect(() => {
-    const t = window.setInterval(
+    const id = window.setInterval(
       () => setActive((i) => (i + 1) % SLIDES.length),
       INTERVAL_MS,
     );
-    return () => window.clearInterval(t);
-  }, []);
+    return () => window.clearInterval(id);
+  }, [autoplayKey]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (el?.closest("input, textarea, select, [contenteditable=true]")) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goPrev();
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goNext();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [goPrev, goNext]);
 
   return (
     <section
@@ -64,7 +96,27 @@ export function Hero() {
         />
       </div>
 
-      <div className="mx-auto w-full min-w-0 max-w-6xl px-3 sm:px-6 lg:px-10">
+      {/* Carousel arrows — mid viewport, clear of bottom content on mobile */}
+      <div className="pointer-events-none absolute inset-x-0 top-[min(42%,280px)] z-[5] flex -translate-y-1/2 items-center justify-between px-1 sm:top-[40%] sm:px-3 md:px-6">
+        <button
+          type="button"
+          onClick={goPrev}
+          className="pointer-events-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-slate-950/45 text-white shadow-lg backdrop-blur-md transition hover:border-white/40 hover:bg-slate-950/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 sm:h-12 sm:w-12"
+          aria-label="Previous background image"
+        >
+          <ChevronLeft className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2.25} />
+        </button>
+        <button
+          type="button"
+          onClick={goNext}
+          className="pointer-events-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-slate-950/45 text-white shadow-lg backdrop-blur-md transition hover:border-white/40 hover:bg-slate-950/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 sm:h-12 sm:w-12"
+          aria-label="Next background image"
+        >
+          <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2.25} />
+        </button>
+      </div>
+
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-6xl px-3 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -135,7 +187,10 @@ export function Hero() {
               type="button"
               role="tab"
               aria-selected={i === active}
-              onClick={() => setActive(i)}
+              onClick={() => {
+                setActive(i);
+                bumpAutoplay();
+              }}
               className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full p-2 sm:min-h-0 sm:min-w-0 sm:p-0"
               aria-label={`Background image ${i + 1} of ${SLIDES.length}`}
             >
