@@ -15,8 +15,9 @@ export function PageLoader() {
   const doneRef = useRef(false);
 
   useEffect(() => {
-    let progressTimer: ReturnType<typeof window.setInterval> | undefined;
-    let exitTimer: ReturnType<typeof window.setTimeout> | undefined;
+    /** Browser timer ids (number); avoids NodeJS.Timeout vs DOM mismatch in TS. */
+    let progressTimer: number | undefined;
+    let exitTimer: number | undefined;
 
     const finish = () => {
       if (doneRef.current) return;
@@ -27,7 +28,7 @@ export function PageLoader() {
         /* private mode */
       }
       setProgress(100);
-      exitTimer = window.setTimeout(() => setVisible(false), 420);
+      exitTimer = window.setTimeout(() => setVisible(false), 420) as unknown as number;
     };
 
     const id = requestAnimationFrame(() => {
@@ -46,10 +47,10 @@ export function PageLoader() {
         const t = Math.min(1, (performance.now() - started) / duration);
         setProgress(Math.round(t * 100));
         if (t >= 1) {
-          window.clearInterval(progressTimer);
+          if (progressTimer !== undefined) window.clearInterval(progressTimer);
           finish();
         }
-      }, 32);
+      }, 32) as unknown as number;
     });
 
     return () => {
