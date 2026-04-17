@@ -1,17 +1,49 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { company, media } from "@/data/site";
+import { company } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
-const SLIDES = [...media.heroCarousel];
+const q = "auto=format&fit=crop";
+
+/** Four slides — image, eyebrow, headline, and body copy stay in sync per theme. */
+const HERO_SLIDES = [
+  {
+    imageSrc: `https://images.unsplash.com/photo-1509391366360-2e959784a478?${q}&w=2400&q=85`,
+    eyebrow: company.name,
+    headline: company.tagline,
+    description:
+      "Advanced delivery across engineering, digital platforms, cybersecurity, agriculture, and public programs — structured for efficiency, governance, and sustainable growth.",
+  },
+  {
+    imageSrc: `https://images.unsplash.com/photo-1541888946425-d81bb19240f5?${q}&w=2400&q=85`,
+    eyebrow: "Engineering & built environment",
+    headline: "Structures, highways, and utilities that hold under scrutiny.",
+    description:
+      "Civil works, design assurance, and construction supervision for dual carriageways, institutional campuses, and resilient drainage — with QA packs and as-builts sponsors can defend in audit.",
+  },
+  {
+    imageSrc: `https://images.unsplash.com/photo-1517694712202-14dd9538aa97?${q}&w=2400&q=85`,
+    eyebrow: "Digital platforms & ICT",
+    headline: "Software, integrations, and field systems built for real operations.",
+    description:
+      "Cloud-native applications, APIs, ERP extensions, and offline-capable mobility — engineered for uptime, security defaults, and maintainability across distributed teams.",
+  },
+  {
+    imageSrc: `https://images.unsplash.com/photo-1625246333195-78d9c38ad449?${q}&w=2400&q=85`,
+    eyebrow: "Agriculture & national programs",
+    headline: "Value chains and turnkey programs with measurable field outcomes.",
+    description:
+      "Agro-processing traceability, cooperative-scale pilots, and governance-ready public programs — aligning agronomy, logistics, and digital controls from farm to export documentation.",
+  },
+] as const;
+
 const INTERVAL_MS = 6500;
 
-/** PremPlus-style hero metrics: bold figure + small caps label */
 const heroStats = [
   { value: "6+", label: "Core sectors" },
   { value: "18+", label: "Program streams" },
@@ -19,30 +51,30 @@ const heroStats = [
 ] as const;
 
 /**
- * Full-bleed hero in the spirit of PremPlus (premplus.com.ng):
- * centered headline stack, dual CTAs, prominent stat row, image carousel.
+ * Full-bleed hero — carousel imagery and headline stack advance together.
  */
 export function Hero() {
   const [active, setActive] = useState(0);
   const [autoplayKey, setAutoplayKey] = useState(0);
+  const slide = HERO_SLIDES[active];
 
   const bumpAutoplay = useCallback(() => {
     setAutoplayKey((k) => k + 1);
   }, []);
 
   const goPrev = useCallback(() => {
-    setActive((i) => (i - 1 + SLIDES.length) % SLIDES.length);
+    setActive((i) => (i - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
     bumpAutoplay();
   }, [bumpAutoplay]);
 
   const goNext = useCallback(() => {
-    setActive((i) => (i + 1) % SLIDES.length);
+    setActive((i) => (i + 1) % HERO_SLIDES.length);
     bumpAutoplay();
   }, [bumpAutoplay]);
 
   useEffect(() => {
     const id = window.setInterval(
-      () => setActive((i) => (i + 1) % SLIDES.length),
+      () => setActive((i) => (i + 1) % HERO_SLIDES.length),
       INTERVAL_MS,
     );
     return () => window.clearInterval(id);
@@ -71,9 +103,9 @@ export function Hero() {
       className="relative isolate flex min-h-[100svh] min-w-0 flex-col overflow-hidden bg-[#0a1628]"
     >
       <div className="pointer-events-none absolute inset-0 min-w-0">
-        {SLIDES.map((src, i) => (
+        {HERO_SLIDES.map((s, i) => (
           <motion.div
-            key={src}
+            key={s.imageSrc}
             className="absolute inset-0 min-w-0"
             initial={false}
             animate={{
@@ -83,7 +115,7 @@ export function Hero() {
             transition={{ duration: 1.2, ease: easeOutExpo }}
           >
             <Image
-              src={src}
+              src={s.imageSrc}
               alt=""
               fill
               priority={i === 0}
@@ -93,7 +125,6 @@ export function Hero() {
             />
           </motion.div>
         ))}
-        {/* PremPlus-like: readable band from bottom + soft top vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-[#0a1628]/75 to-[#0a1628]/35" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_0%,rgba(255,255,255,0.08),transparent_55%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(16,185,129,0.12),transparent_60%)]" />
@@ -119,34 +150,28 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 flex min-h-[100svh] flex-1 flex-col items-center justify-center px-4 pb-[max(6rem,env(safe-area-inset-bottom))] pt-[max(6.5rem,env(safe-area-inset-top))] text-center sm:px-6 sm:pb-24 sm:pt-32">
-        <motion.p
-          className="max-w-3xl text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/95 sm:text-xs"
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: easeOutExpo }}
-        >
-          {company.name}
-        </motion.p>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={slide.imageSrc}
+            className="mx-auto flex max-w-4xl flex-col items-center"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.45, ease: easeOutExpo }}
+          >
+            <p className="max-w-3xl text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/95 sm:text-xs">
+              {slide.eyebrow}
+            </p>
 
-        <motion.h1
-          className="mt-4 max-w-4xl text-balance font-display text-[clamp(1.875rem,5.5vw,3.75rem)] font-semibold leading-[1.12] tracking-tight text-white sm:mt-5"
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.06, duration: 0.65, ease: easeOutExpo }}
-        >
-          {company.tagline}
-        </motion.h1>
+            <h1 className="mt-4 max-w-4xl text-balance font-display text-[clamp(1.875rem,5.5vw,3.75rem)] font-semibold leading-[1.12] tracking-tight text-white sm:mt-5">
+              {slide.headline}
+            </h1>
 
-        <motion.p
-          className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-white/85 sm:mt-6 sm:text-lg"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12, duration: 0.55, ease: easeOutExpo }}
-        >
-          Advanced delivery across engineering, digital platforms, cybersecurity,
-          agriculture, and public programs — structured for efficiency, governance,
-          and sustainable growth.
-        </motion.p>
+            <p className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-white/85 sm:mt-6 sm:text-lg">
+              {slide.description}
+            </p>
+          </motion.div>
+        </AnimatePresence>
 
         <motion.div
           className="mt-8 flex w-full max-w-md flex-col justify-center gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:gap-4"
@@ -163,7 +188,7 @@ export function Hero() {
           </Link>
           <Link
             href="/our-company"
-            className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15 sm:flex-initial sm:min-w-[160px]"
+            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15 sm:flex-initial sm:min-w-[160px]"
           >
             Learn more
           </Link>
@@ -198,9 +223,9 @@ export function Hero() {
           role="tablist"
           aria-label="Hero slides"
         >
-          {SLIDES.map((_, i) => (
+          {HERO_SLIDES.map((s, i) => (
             <button
-              key={i}
+              key={s.imageSrc}
               type="button"
               role="tab"
               aria-selected={i === active}
@@ -209,7 +234,7 @@ export function Hero() {
                 bumpAutoplay();
               }}
               className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full p-2 sm:min-h-0 sm:min-w-0 sm:p-1"
-              aria-label={`Slide ${i + 1} of ${SLIDES.length}`}
+              aria-label={`Slide ${i + 1} of ${HERO_SLIDES.length}`}
             >
               <span
                 className={`block rounded-full transition-all duration-500 ease-out ${
