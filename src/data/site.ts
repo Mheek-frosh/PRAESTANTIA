@@ -169,6 +169,7 @@ export const testimonials: {
   name: string;
   role: string;
   organization: string;
+  imageSrc: string;
 }[] = [
   {
     id: "t1",
@@ -177,6 +178,7 @@ export const testimonials: {
     name: "Dr. Adaeze Okafor",
     role: "Program Director",
     organization: "Federal infrastructure programme",
+    imageSrc: media.testimonialPortraits.t1,
   },
   {
     id: "t2",
@@ -185,6 +187,7 @@ export const testimonials: {
     name: "Michael Bello",
     role: "Chief Operating Officer",
     organization: "National utilities consortium",
+    imageSrc: media.testimonialPortraits.t2,
   },
   {
     id: "t3",
@@ -193,14 +196,7 @@ export const testimonials: {
     name: "Yewande Adeyemi",
     role: "Head of Enterprise Technology",
     organization: "Lagos-headquartered financial group",
-  },
-  {
-    id: "t4",
-    quote:
-      "On our agro-processing expansion, Praestantia combined operational realism with modern traceability—export readiness became achievable, not theoretical.",
-    name: "Ibrahim Musa",
-    role: "Managing Director",
-    organization: "Multi-site agro-industrial network",
+    imageSrc: media.testimonialPortraits.t3,
   },
 ];
 

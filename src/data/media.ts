@@ -28,6 +28,12 @@ export const media = {
     agro: `https://images.unsplash.com/photo-1625246333195-78d9c38ad449?${q}&w=900&q=80`,
     consulting: `https://images.unsplash.com/photo-1507676184212-d03ab07a01e7?${q}&w=900&q=80`,
   },
+  /** Client portraits for testimonials (replace with real headshots when available). */
+  testimonialPortraits: {
+    t1: `https://images.unsplash.com/photo-1560250097-0b93528c311a?${q}&w=400&h=400&q=82`,
+    t2: `https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?${q}&w=400&h=400&q=82`,
+    t3: `https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?${q}&w=400&h=400&q=82`,
+  },
   projects: {
     p1: `https://images.unsplash.com/photo-1590644312911-4d12900d2f2e?${q}&w=1200&q=80`,
     p2: `https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?${q}&w=1200&q=80`,
