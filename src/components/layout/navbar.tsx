@@ -68,13 +68,13 @@ export function Navbar() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-10"
+        className="fixed inset-x-0 top-0 z-50 px-3 pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 lg:px-10"
         initial={{ y: -16, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: easeOutExpo }}
       >
         <div
-          className={`mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border px-4 py-3 transition-all duration-300 sm:px-5 ${
+          className={`mx-auto flex max-w-6xl min-w-0 items-center justify-between gap-2 rounded-2xl border px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-5 sm:py-3 ${
             onHero
               ? "border-white/15 bg-slate-950/25 text-white shadow-none backdrop-blur-md"
               : scrolled
@@ -82,9 +82,9 @@ export function Navbar() {
                 : "border-transparent bg-transparent text-[var(--foreground)]"
           }`}
         >
-          <Link href="#hero" className="group flex items-center gap-3">
+          <Link href="#hero" className="group flex min-w-0 shrink items-center gap-2 sm:gap-3">
             <span
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border text-sm font-semibold shadow-sm backdrop-blur-md ${
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border text-sm font-semibold shadow-sm backdrop-blur-md sm:h-11 sm:w-11 ${
                 onHero
                   ? "border-white/25 bg-white/10 text-emerald-300"
                   : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--accent)]"
@@ -122,11 +122,11 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={toggleTheme}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md transition ${
+              className={`inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border backdrop-blur-md transition ${
                 onHero
                   ? "border-white/25 bg-white/10 text-white hover:border-white/40"
                   : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)] hover:border-[var(--accent)]/40 hover:text-[var(--accent)]"
@@ -143,7 +143,7 @@ export function Navbar() {
             </button>
             <Link
               href="#contact"
-              className={`hidden rounded-xl px-4 py-2 text-sm font-semibold shadow-lg transition sm:inline-flex ${
+              className={`hidden min-h-[44px] items-center rounded-xl px-4 py-2 text-sm font-semibold shadow-lg transition sm:inline-flex ${
                 onHero
                   ? "bg-emerald-500 text-white hover:bg-emerald-400"
                   : "bg-[var(--accent)] text-[var(--accent-foreground)] shadow-[0_12px_40px_-12px_rgba(5,150,105,0.45)] hover:brightness-110"
@@ -153,7 +153,7 @@ export function Navbar() {
             </Link>
             <button
               type="button"
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md lg:hidden ${
+              className={`inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border backdrop-blur-md lg:hidden ${
                 onHero
                   ? "border-white/25 bg-white/10 text-white"
                   : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)]"
@@ -174,7 +174,7 @@ export function Navbar() {
         transition={{ duration: 0.25 }}
       />
       <motion.aside
-        className="fixed inset-y-0 right-0 z-[60] w-[min(92vw,360px)] border-l border-[var(--glass-border)] bg-[var(--surface-elevated)] p-6 pt-24 shadow-2xl backdrop-blur-xl lg:hidden"
+        className="fixed inset-y-0 right-0 z-[60] flex w-[min(calc(100vw-12px),360px)] max-w-full flex-col overflow-y-auto border-l border-[var(--glass-border)] bg-[var(--surface-elevated)] p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pl-5 pt-[max(5.5rem,env(safe-area-inset-top))] shadow-2xl backdrop-blur-xl sm:p-6 sm:pt-24 lg:hidden"
         initial={false}
         animate={{ x: open ? 0 : "100%" }}
         transition={{ type: "spring", stiffness: 320, damping: 32 }}
@@ -185,7 +185,7 @@ export function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-3 text-base font-medium text-[var(--foreground)] hover:bg-[var(--glass-bg)]"
+              className="flex min-h-[48px] items-center rounded-xl px-3 py-3 text-base font-medium text-[var(--foreground)] hover:bg-[var(--glass-bg)]"
             >
               {l.label}
             </Link>
@@ -193,7 +193,7 @@ export function Navbar() {
           <Link
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[var(--accent-foreground)]"
+            className="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[var(--accent-foreground)]"
           >
             Partner with us
           </Link>

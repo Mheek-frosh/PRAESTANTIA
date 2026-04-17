@@ -20,7 +20,7 @@ export function SiteChrome() {
     <>
       <PageLoader />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-x-clip pb-24 sm:pb-0">
         <Hero />
         <About />
         <Services />

@@ -42,8 +42,8 @@ const quick = [
 export function Footer() {
   return (
     <footer className="border-t border-[var(--glass-border)] bg-[var(--footer-bg)]">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-10">
-        <div className="grid gap-10 md:grid-cols-12">
+      <div className="mx-auto min-w-0 max-w-6xl px-3 py-12 sm:px-6 sm:py-14 lg:px-10">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] text-sm font-semibold text-[var(--accent)] backdrop-blur-md">
@@ -56,7 +56,7 @@ export function Footer() {
                 <p className="text-xs text-[var(--muted)]">{company.address}</p>
               </div>
             </div>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-[var(--muted)]">
+            <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-[var(--muted)] sm:mt-5">
               A Nigerian multi-sector partner delivering engineering, digital, and
               agro-industrial outcomes with the rigor expected by governments,
               corporates, and investors.
@@ -119,9 +119,9 @@ export function Footer() {
             </p>
           </div>
         </div>
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-[var(--glass-border)] pt-8 text-xs text-[var(--muted)] sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} {company.legal}. All rights reserved.</p>
-          <p className="text-[var(--muted)]">Built for national impact — engineered for trust.</p>
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-[var(--glass-border)] pt-6 text-xs leading-relaxed text-[var(--muted)] sm:mt-12 sm:flex-row sm:items-center sm:gap-4 sm:pt-8">
+          <p className="text-pretty">© {new Date().getFullYear()} {company.legal}. All rights reserved.</p>
+          <p className="text-pretty text-[var(--muted)]">Built for national impact — engineered for trust.</p>
         </div>
       </div>
     </footer>

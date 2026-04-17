@@ -21,10 +21,10 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative border-t border-[var(--glass-border)] py-24 sm:py-28"
+      className="relative border-t border-[var(--glass-border)] py-16 sm:py-24 lg:py-28"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+      <div className="mx-auto min-w-0 max-w-6xl px-3 sm:px-6 lg:px-10">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-10">
           <motion.div
             className="lg:col-span-5"
             initial={{ opacity: 0, y: 22 }}
@@ -35,7 +35,7 @@ export function Contact() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
               Contact
             </p>
-            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
+            <h2 className="mt-3 text-balance font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:mt-4 sm:text-3xl md:text-4xl">
               Partner with Praestantia
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--muted)] sm:text-lg">
@@ -44,7 +44,7 @@ export function Contact() {
               stakeholders expect.
             </p>
 
-            <div className="mt-8 space-y-4 rounded-3xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-6 shadow-[var(--card-shadow)] backdrop-blur-xl">
+            <div className="mt-6 space-y-4 rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-4 shadow-[var(--card-shadow)] backdrop-blur-xl sm:mt-8 sm:rounded-3xl sm:p-6">
               <div className="flex gap-3">
                 <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--accent)]/12 text-[var(--accent)]">
                   <MapPin className="h-4 w-4" />
@@ -82,9 +82,9 @@ export function Contact() {
           >
             <form
               onSubmit={onSubmit}
-              className="rounded-3xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-6 shadow-[var(--card-shadow)] backdrop-blur-xl sm:p-8"
+              className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-4 shadow-[var(--card-shadow)] backdrop-blur-xl sm:rounded-3xl sm:p-6 md:p-8"
             >
-              <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                 <label className="flex flex-col gap-2 text-sm font-medium text-[var(--foreground)]">
                   Full name
                   <input
@@ -92,7 +92,7 @@ export function Contact() {
                     name="name"
                     autoComplete="name"
                     placeholder="Your name"
-                    className="rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15"
+                    className="min-h-[48px] rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15 sm:min-h-0 sm:text-sm"
                   />
                 </label>
                 <label className="flex flex-col gap-2 text-sm font-medium text-[var(--foreground)]">
@@ -103,7 +103,7 @@ export function Contact() {
                     name="email"
                     autoComplete="email"
                     placeholder="you@organization.gov.ng"
-                    className="rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15"
+                    className="min-h-[48px] rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15 sm:min-h-0 sm:text-sm"
                   />
                 </label>
               </div>
@@ -114,14 +114,14 @@ export function Contact() {
                   name="message"
                   rows={5}
                   placeholder="Tell us about your objectives, timeline, and stakeholders."
-                  className="resize-y rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15"
+                  className="resize-y rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15 sm:text-sm"
                 />
               </label>
 
-              <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[var(--accent)] px-6 py-3.5 text-sm font-semibold text-[var(--accent-foreground)] shadow-[0_16px_50px_-18px_rgba(5,150,105,0.45)] transition hover:brightness-110"
+                  className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-[var(--accent)] px-6 py-3.5 text-sm font-semibold text-[var(--accent-foreground)] shadow-[0_16px_50px_-18px_rgba(5,150,105,0.45)] transition hover:brightness-110 sm:w-auto sm:min-h-0"
                 >
                   <Send className="h-4 w-4" />
                   Request a conversation

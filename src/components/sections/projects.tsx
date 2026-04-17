@@ -30,35 +30,35 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative border-t border-[var(--glass-border)] bg-[var(--section-bg)] py-24 sm:py-28"
+      className="relative border-t border-[var(--glass-border)] bg-[var(--section-bg)] py-16 sm:py-24 lg:py-28"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto min-w-0 max-w-6xl px-3 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.55, ease: easeOutExpo }}
-          className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+          className="flex flex-col gap-6 sm:gap-8 lg:flex-row lg:items-end lg:justify-between"
         >
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
               Portfolio
             </p>
-            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
+            <h2 className="mt-3 text-balance font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:mt-4 sm:text-3xl md:text-4xl">
               Featured programs
             </h2>
-            <p className="mt-4 text-base text-[var(--muted)] sm:text-lg">
+            <p className="mt-3 text-pretty text-base text-[var(--muted)] sm:mt-4 sm:text-lg">
               Representative engagements across infrastructure, technology, and
               agriculture — presented the way we brief boards and public sponsors.
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="-mx-3 flex gap-2 overflow-x-auto overflow-y-hidden px-3 pb-1 pt-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
             {filters.map((f) => (
               <button
                 key={f}
                 type="button"
                 onClick={() => setFilter(f)}
-                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition ${
+                className={`shrink-0 rounded-full border px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition sm:py-2 ${
                   filter === f
                     ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--accent-foreground)]"
                     : "border-[var(--glass-border)] bg-[var(--card-bg)] text-[var(--muted)] hover:border-[var(--accent)]/35 hover:text-[var(--foreground)]"
@@ -70,7 +70,7 @@ export function Projects() {
           </div>
         </motion.div>
 
-        <motion.div layout className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visible.map((p) => (
               <motion.article
@@ -82,7 +82,7 @@ export function Projects() {
                 transition={{ duration: 0.35, ease: easeOutExpo }}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)]"
               >
-                <div className="relative h-48 w-full overflow-hidden bg-slate-200">
+                <div className="relative h-44 w-full overflow-hidden bg-slate-200 sm:h-48">
                   <Image
                     src={p.imageSrc}
                     alt=""
@@ -98,8 +98,8 @@ export function Projects() {
                     {p.year}
                   </span>
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-lg font-semibold text-[var(--foreground)] transition group-hover:text-[var(--accent)]">
+                <div className="flex flex-1 flex-col p-4 sm:p-6">
+                  <h3 className="text-balance font-display text-base font-semibold text-[var(--foreground)] transition group-hover:text-[var(--accent)] sm:text-lg">
                     {p.title}
                   </h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--muted)]">

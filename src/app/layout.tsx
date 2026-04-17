@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -15,6 +15,13 @@ const display = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#f8fafc",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://praestantia.ng"),
@@ -79,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en-NG" suppressHydrationWarning>
       <body
-        className={`${sans.variable} ${display.variable} flex min-h-full flex-col font-sans antialiased`}
+        className={`${sans.variable} ${display.variable} flex min-h-full min-w-0 flex-col overflow-x-clip font-sans antialiased`}
       >
         <script
           type="application/ld+json"

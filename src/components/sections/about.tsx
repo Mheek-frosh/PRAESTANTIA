@@ -20,10 +20,10 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative border-t border-[var(--glass-border)] bg-[var(--section-bg)] py-24 sm:py-28"
+      className="relative border-t border-[var(--glass-border)] bg-[var(--section-bg)] py-16 sm:py-24 lg:py-28"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="mx-auto min-w-0 max-w-6xl px-3 sm:px-6 lg:px-10">
+        <div className="grid items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -39,7 +39,7 @@ export function About() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-950/50 via-transparent to-transparent" />
-            <p className="absolute bottom-5 left-5 right-5 text-sm font-medium leading-snug text-white drop-shadow-md">
+            <p className="absolute bottom-4 left-4 right-4 text-xs font-medium leading-snug text-white drop-shadow-md sm:bottom-5 sm:left-5 sm:right-5 sm:text-sm">
               National programs demand discipline, transparency, and delivery
               velocity — without compromising safety or compliance.
             </p>
@@ -50,7 +50,7 @@ export function About() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
                 About Praestantia
               </p>
-              <h2 className="mt-4 max-w-xl font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
+              <h2 className="mt-3 max-w-xl text-balance font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:mt-4 sm:text-3xl md:text-4xl">
                 Who we are
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[var(--muted)] sm:text-lg">
@@ -62,11 +62,11 @@ export function About() {
               </p>
             </motion.div>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
               <motion.article
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: 0.05 }}
-                className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-5 shadow-sm"
+                className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-4 shadow-sm sm:p-5"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)]">
                   <Eye className="h-5 w-5" />
@@ -83,7 +83,7 @@ export function About() {
               <motion.article
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: 0.1 }}
-                className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-5 shadow-sm"
+                className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-4 shadow-sm sm:p-5"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)]">
                   <Target className="h-5 w-5" />
@@ -100,7 +100,7 @@ export function About() {
               <motion.article
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: 0.15 }}
-                className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-5 shadow-sm sm:col-span-1"
+                className="rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-4 shadow-sm sm:col-span-1 sm:p-5"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)]">
                   <Shield className="h-5 w-5" />
