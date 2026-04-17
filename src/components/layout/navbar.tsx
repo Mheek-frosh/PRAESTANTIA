@@ -18,8 +18,6 @@ const aboutChildren = [
 const sectionLinks = [
   { href: "/#services", label: "Services" },
   { href: "/#projects", label: "Projects" },
-  { href: "/#why-us", label: "Why Us" },
-  { href: "/#testimonials", label: "Testimonials" },
   { href: "/#technology", label: "Technology" },
   { href: "/#contact", label: "Contact" },
 ] as const;
@@ -172,6 +170,13 @@ export function Navbar() {
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+            <Link
+              href="/"
+              aria-current={isHome ? "page" : undefined}
+              className={navLinkClass(onHero, isHome ? "font-semibold" : "")}
+            >
+              Home
+            </Link>
             <div className="relative" ref={aboutRef}>
               <button
                 type="button"
@@ -294,7 +299,15 @@ export function Navbar() {
           </button>
         </div>
         <div className="flex min-h-0 flex-1 flex-col gap-1">
-          <p className="px-3 pb-1 pt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">
+          <Link
+            href="/"
+            aria-current={isHome ? "page" : undefined}
+            onClick={() => setOpen(false)}
+            className={`flex min-h-[48px] items-center rounded-xl px-3 py-3 text-base font-medium text-[var(--foreground)] hover:bg-[var(--glass-bg)] ${isHome ? "bg-[var(--accent-soft)] font-semibold text-[var(--accent)]" : ""}`}
+          >
+            Home
+          </Link>
+          <p className="px-3 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">
             About
           </p>
           {aboutChildren.map((item) => (
