@@ -37,7 +37,7 @@ function replyFor(input: string): string {
 }
 
 /**
- * Floating assistant — fixed emerald/slate palette so contrast holds in light & dark site themes.
+ * Floating assistant on a fixed white UI — reads clearly on light or dark site themes.
  */
 export function AssistantChat() {
   const [open, setOpen] = useState(false);
@@ -79,16 +79,18 @@ export function AssistantChat() {
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: 12, scale: 0.96, filter: "blur(4px)" }}
               transition={{ duration: 0.35, ease: easeOutExpo }}
-              className="mb-3 flex w-[calc(100vw-1.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-[0_20px_60px_-12px_rgba(15,23,42,0.35)] dark:border-slate-600/80 dark:bg-slate-950 dark:text-slate-50 dark:shadow-[0_24px_70px_-8px_rgba(0,0,0,0.75)] sm:w-[min(100vw-2.5rem,380px)]"
+              className="mb-3 flex w-[calc(100vw-1.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] sm:w-[min(100vw-2.5rem,380px)]"
             >
-              <div className="flex items-center justify-between gap-2 border-b border-emerald-700/25 bg-emerald-600 px-4 py-3 text-white dark:border-emerald-400/20 dark:bg-emerald-700">
+              <div className="flex items-center justify-between gap-2 border-b border-slate-100 bg-white px-4 py-3">
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/20 text-white ring-1 ring-white/30">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-700/20">
                     <Sparkles className="h-4 w-4" aria-hidden />
                   </span>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold leading-tight">Assistant</p>
-                    <p className="text-[10px] font-medium uppercase tracking-wider text-emerald-100">
+                    <p className="truncate text-sm font-semibold leading-tight text-slate-900">
+                      Assistant
+                    </p>
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
                       AI · Informational
                     </p>
                   </div>
@@ -96,7 +98,7 @@ export function AssistantChat() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="shrink-0 rounded-lg p-2 text-white/90 transition hover:bg-white/15 hover:text-white"
+                  className="shrink-0 rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
                   aria-label="Close assistant"
                 >
                   <X className="h-4 w-4" />
@@ -105,7 +107,7 @@ export function AssistantChat() {
 
               <div
                 ref={listRef}
-                className="flex max-h-[min(58dvh,440px)] flex-col gap-3 overflow-y-auto overflow-x-hidden bg-slate-50 px-3 py-3 dark:bg-slate-900/95 sm:max-h-[min(52vh,420px)] sm:px-4 sm:py-4"
+                className="flex max-h-[min(58dvh,440px)] flex-col gap-3 overflow-y-auto overflow-x-hidden bg-white px-3 py-3 sm:max-h-[min(52vh,420px)] sm:px-4 sm:py-4"
               >
                 {messages.map((m) => (
                   <div
@@ -115,8 +117,8 @@ export function AssistantChat() {
                     <div
                       className={`max-w-[min(92%,20rem)] break-words rounded-2xl px-3 py-2.5 text-[13px] leading-relaxed sm:px-3.5 sm:text-sm ${
                         m.role === "user"
-                          ? "bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-700/30 dark:bg-emerald-500 dark:ring-emerald-400/25"
-                          : "border border-slate-200 bg-white text-slate-800 shadow-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                          ? "bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-700/25"
+                          : "border border-slate-200 bg-slate-50 text-slate-800 shadow-sm"
                       }`}
                     >
                       {m.text.split("**").map((chunk, i) =>
@@ -126,7 +128,7 @@ export function AssistantChat() {
                             className={
                               m.role === "user"
                                 ? "font-semibold text-white"
-                                : "font-semibold text-emerald-800 dark:text-emerald-200"
+                                : "font-semibold text-emerald-800"
                             }
                           >
                             {chunk}
@@ -140,11 +142,11 @@ export function AssistantChat() {
                 ))}
                 {typing && (
                   <div className="flex justify-start">
-                    <div className="flex gap-1.5 rounded-2xl border border-slate-200 bg-white px-4 py-3 dark:border-slate-600 dark:bg-slate-800">
+                    <div className="flex gap-1.5 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
                       {[0, 1, 2].map((i) => (
                         <motion.span
                           key={i}
-                          className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"
+                          className="h-1.5 w-1.5 rounded-full bg-emerald-600"
                           animate={{ opacity: [0.35, 1, 0.35], y: [0, -3, 0] }}
                           transition={{
                             duration: 0.9,
@@ -160,7 +162,7 @@ export function AssistantChat() {
               </div>
 
               <form
-                className="flex gap-2 border-t border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-950"
+                className="flex gap-2 border-t border-slate-100 bg-white p-3"
                 onSubmit={(e) => {
                   e.preventDefault();
                   send();
@@ -170,13 +172,13 @@ export function AssistantChat() {
                   value={draft}
                   onChange={(e) => setDraft(e.target.value)}
                   placeholder="Ask anything…"
-                  className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-100 px-3 py-2.5 text-sm text-slate-900 outline-none placeholder:text-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/25 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder:text-slate-400 dark:focus:border-emerald-400"
+                  className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                   aria-label="Message to assistant"
                 />
                 <button
                   type="submit"
                   disabled={!draft.trim() || typing}
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-700/30 transition enabled:hover:bg-emerald-500 disabled:opacity-40 dark:bg-emerald-500 dark:ring-emerald-400/30 dark:enabled:hover:bg-emerald-400"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm ring-1 ring-emerald-700/25 transition enabled:hover:bg-emerald-500 disabled:opacity-40"
                   aria-label="Send message"
                 >
                   <Send className="h-4 w-4" />
@@ -189,7 +191,7 @@ export function AssistantChat() {
         <motion.button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="relative flex h-[3.25rem] w-[3.25rem] min-h-[52px] min-w-[52px] items-center justify-center rounded-2xl border border-emerald-700/40 bg-emerald-600 text-white shadow-[0_12px_40px_-8px_rgba(5,150,105,0.55)] ring-1 ring-white/20 transition hover:bg-emerald-500 dark:border-emerald-400/50 dark:bg-emerald-500 dark:shadow-[0_12px_40px_-8px_rgba(16,185,129,0.45)] dark:ring-emerald-200/20 dark:hover:bg-emerald-400 sm:h-14 sm:w-14 sm:min-h-0 sm:min-w-0"
+          className="relative flex h-[3.25rem] w-[3.25rem] min-h-[52px] min-w-[52px] items-center justify-center rounded-2xl border border-slate-200 bg-white text-emerald-600 shadow-[0_8px_30px_-6px_rgba(15,23,42,0.12)] ring-1 ring-white transition hover:border-emerald-200 hover:bg-emerald-50/80 hover:text-emerald-700 sm:h-14 sm:w-14 sm:min-h-0 sm:min-w-0"
           aria-expanded={open}
           aria-label={open ? "Close assistant" : "Open AI assistant"}
           whileTap={{ scale: 0.96 }}
@@ -203,7 +205,7 @@ export function AssistantChat() {
                 exit={{ opacity: 0, rotate: 45 }}
                 transition={{ duration: 0.2 }}
               >
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-slate-700" />
               </motion.span>
             ) : (
               <motion.span
@@ -215,7 +217,7 @@ export function AssistantChat() {
                 className="relative"
               >
                 <MessageCircle className="h-6 w-6" />
-                <span className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5 rounded-full bg-amber-300 ring-2 ring-emerald-600 dark:ring-emerald-500" />
+                <span className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
               </motion.span>
             )}
           </AnimatePresence>

@@ -6,8 +6,23 @@ import { easeOutExpo } from "@/lib/motion";
 
 const SESSION_KEY = "praestantia_intro_seen";
 
+function shouldSkipIntroForThisNavigation(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const entry = performance.getEntriesByType(
+      "navigation",
+    )[0] as PerformanceNavigationTiming | undefined;
+    // Full reload (F5, dev refresh): always play intro so the loader is visible again.
+    if (entry?.type === "reload") return false;
+    return sessionStorage.getItem(SESSION_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 /**
- * Premium session intro on a white canvas — runs once per tab session, then reveals the site.
+ * Premium session intro on a white canvas — once per tab session for normal navigations;
+ * runs again on reload so refresh/dev always sees the intro.
  */
 export function PageLoader() {
   const [visible, setVisible] = useState(true);
@@ -31,13 +46,9 @@ export function PageLoader() {
     };
 
     const id = requestAnimationFrame(() => {
-      try {
-        if (sessionStorage.getItem(SESSION_KEY)) {
-          setVisible(false);
-          return;
-        }
-      } catch {
-        /* ignore */
+      if (shouldSkipIntroForThisNavigation()) {
+        setVisible(false);
+        return;
       }
 
       const started = performance.now();
@@ -63,7 +74,7 @@ export function PageLoader() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-white"
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-white"
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,

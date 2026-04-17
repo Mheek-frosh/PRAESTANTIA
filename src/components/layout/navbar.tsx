@@ -60,6 +60,15 @@ export function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
@@ -169,18 +178,38 @@ export function Navbar() {
       </motion.header>
 
       <motion.div
-        className="fixed inset-0 z-[55] bg-black/50 backdrop-blur-sm lg:hidden"
+        role="presentation"
+        className="fixed inset-0 z-[45] bg-black/45 backdrop-blur-sm lg:hidden"
         initial={false}
         animate={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
         transition={{ duration: 0.25 }}
+        onClick={() => setOpen(false)}
       />
       <motion.aside
-        className="fixed inset-y-0 right-0 z-[60] flex w-[min(calc(100vw-12px),360px)] max-w-full flex-col overflow-y-auto border-l border-[var(--glass-border)] bg-[var(--surface-elevated)] p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pl-5 pt-[max(5.5rem,env(safe-area-inset-top))] shadow-2xl backdrop-blur-xl sm:p-6 sm:pt-24 lg:hidden"
+        className="fixed inset-y-0 right-0 z-[60] flex w-[min(380px,calc(100vw-12px))] max-w-full flex-col overflow-y-auto overscroll-contain border-l border-[var(--glass-border)] bg-[var(--surface-elevated)] shadow-2xl backdrop-blur-xl lg:hidden"
+        style={{
+          paddingTop: "max(1rem, env(safe-area-inset-top))",
+          paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
+          paddingLeft: "max(1rem, env(safe-area-inset-left))",
+          paddingRight: "max(0.75rem, env(safe-area-inset-right))",
+        }}
         initial={false}
         animate={{ x: open ? 0 : "100%" }}
         transition={{ type: "spring", stiffness: 320, damping: 32 }}
+        aria-hidden={!open}
       >
-        <div className="flex flex-col gap-1">
+        <div className="mb-5 flex shrink-0 items-center justify-between gap-3 border-b border-[var(--glass-border)] pb-4">
+          <p className="text-sm font-semibold tracking-tight text-[var(--foreground)]">Menu</p>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)] transition hover:border-[var(--accent)]/35 hover:text-[var(--accent)]"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        <div className="flex min-h-0 flex-1 flex-col gap-1">
           {links.map((l) => (
             <Link
               key={l.href}
