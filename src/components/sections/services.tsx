@@ -9,6 +9,7 @@ import {
   Landmark,
   ShieldCheck,
   Sprout,
+  BrainCircuit,
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
@@ -22,6 +23,7 @@ const icons = {
   ShieldCheck,
   Sprout,
   Landmark,
+  BrainCircuit,
 } as const;
 
 /**

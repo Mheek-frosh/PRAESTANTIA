@@ -27,6 +27,7 @@ export const media = {
     cyber: `https://images.unsplash.com/photo-1563986768609-322da13575f3?${q}&w=900&q=80`,
     agro: `https://images.unsplash.com/photo-1625246333195-78d9c38ad449?${q}&w=900&q=80`,
     consulting: `https://images.unsplash.com/photo-1507676184212-d03ab07a01e7?${q}&w=900&q=80`,
+    ai: `https://images.unsplash.com/photo-1677442136019-21780ecad995?${q}&w=900&q=80`,
   },
   /** Client portraits for testimonials (replace with real headshots when available). */
   testimonialPortraits: {

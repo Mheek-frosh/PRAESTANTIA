@@ -142,6 +142,16 @@ export const services = [
     icon: "Landmark" as const,
     coverSrc: media.services.consulting,
   },
+  {
+    id: "ai",
+    title: "AI Management & Governance",
+    short:
+      "Strategic integration, risk management, and ethical governance of artificial intelligence across the enterprise.",
+    details:
+      "We provide comprehensive frameworks for safe AI adoption—ranging from risk assessment and policy development to continuous monitoring of AI models. Our approach ensures innovation aligns with regulatory standards, data privacy, and ethical guardrails.",
+    icon: "BrainCircuit" as const,
+    coverSrc: media.services.ai,
+  },
 ];
 
 export const whyUs = [
