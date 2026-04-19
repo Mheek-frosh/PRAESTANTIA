@@ -68,8 +68,20 @@ export function Contact() {
                 <span className="font-semibold text-[var(--foreground)]">
                   Email:
                 </span>{" "}
-                {company.email}
               </div>
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--glass-border)] shadow-[var(--card-shadow)] sm:rounded-3xl bg-[var(--card-bg)]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.816853288219!2d7.495082!3d9.05785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b59b02dc511%3A0x8673a6e9a68a3560!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1713554160000!5m2!1sen!2sus"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full grayscale contrast-125 opacity-90 dark:opacity-75 dark:invert dark:hue-rotate-180"
+              />
             </div>
           </motion.div>
 

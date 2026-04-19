@@ -16,10 +16,9 @@ const aboutChildren = [
 ] as const;
 
 const sectionLinks = [
-  { href: "/#services", label: "Services" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#technology", label: "Technology" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/projects", label: "Projects" },
+  { href: "/technology", label: "Technology" },
 ] as const;
 
 function heroThresholdPx() {
@@ -241,7 +240,7 @@ export function Navbar() {
               )}
             </button>
             <Link
-              href="/#contact"
+              href="/partner-with-us"
               className={`hidden min-h-[44px] items-center rounded-xl px-4 py-2 text-sm font-semibold shadow-lg transition sm:inline-flex ${
                 onHero
                   ? "bg-emerald-500 text-white hover:bg-emerald-400"
@@ -332,7 +331,7 @@ export function Navbar() {
             </Link>
           ))}
           <Link
-            href="/#contact"
+            href="/partner-with-us"
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[var(--accent-foreground)]"
           >

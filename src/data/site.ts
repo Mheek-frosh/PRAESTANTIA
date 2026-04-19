@@ -212,20 +212,36 @@ export const testimonials: {
 
 export const capabilities = [
   {
+    id: "software",
     title: "Software development",
-    body: "Product-grade engineering with CI/CD, testing discipline, and maintainable architecture.",
+    short: "Product-grade engineering with CI/CD, testing discipline, and maintainable architecture.",
+    details: "Our software engineering teams build scalable, cloud-native applications with modern frameworks. We prioritize maintainable architecture, automated testing, and CI/CD pipelines to ensure rapid, reliable delivery for enterprise operations.",
+    icon: "Code" as const,
+    coverSrc: media.services.ict,
   },
   {
+    id: "cloud",
     title: "Cloud infrastructure",
-    body: "Landing zones, observability, cost governance, and resilient multi-region patterns.",
+    short: "Landing zones, observability, cost governance, and resilient multi-region patterns.",
+    details: "We design and deploy secure cloud architectures tailored for performance and cost-efficiency. From landing zones to continuous observability, our infrastructure patterns ensure high availability and disaster recovery for mission-critical workloads.",
+    icon: "Cloud" as const,
+    coverSrc: media.projects.p3,
   },
   {
+    id: "ai-systems",
     title: "AI-ready systems",
-    body: "Data foundations, retrieval workflows, and responsible deployment guardrails for enterprise AI.",
+    short: "Data foundations, retrieval workflows, and responsible deployment guardrails for enterprise AI.",
+    details: "We prepare your organization for the AI era by building robust data foundations and implementing secure retrieval-augmented generation (RAG) workflows. Our deployments include strict ethical and security guardrails to govern AI usage effectively.",
+    icon: "Brain" as const,
+    coverSrc: media.services.ai,
   },
   {
+    id: "cybersecurity",
     title: "Cybersecurity",
-    body: "Threat modeling, hardening roadmaps, and operational security programs that scale.",
+    short: "Threat modeling, hardening roadmaps, and operational security programs that scale.",
+    details: "Protecting enterprise assets through comprehensive threat modeling, identity management, and continuous monitoring. We implement Zero Trust architectures and compliance frameworks to safeguard against evolving cyber threats.",
+    icon: "Lock" as const,
+    coverSrc: media.services.cyber,
   },
 ];
 

@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Brain, Cloud, Code, Lock } from "lucide-react";
+import Link from "next/link";
+import { Brain, Cloud, Code, Lock, ArrowRight } from "lucide-react";
 import { media } from "@/data/media";
 import { capabilities } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
@@ -86,8 +87,14 @@ export function Technology() {
                     </h3>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                    {c.body}
+                    {c.short}
                   </p>
+                  <Link
+                    href={`/technology/${c.id}`}
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--accent)] hover:underline group/tech"
+                  >
+                    Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover/tech:translate-x-1" />
+                  </Link>
                 </motion.div>
               );
             })}

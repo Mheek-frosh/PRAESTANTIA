@@ -1,7 +1,6 @@
 "use client";
 
 import { MarketingShell } from "@/components/marketing-shell";
-import { Contact } from "@/components/sections/contact";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
 import { Services } from "@/components/sections/services";
@@ -21,7 +20,6 @@ export function SiteChrome() {
       <WhyUs />
       <Testimonials />
       <Technology />
-      <Contact />
     </MarketingShell>
   );
 }

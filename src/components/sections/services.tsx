@@ -1,7 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Code2,
   HardHat,
@@ -10,9 +11,8 @@ import {
   ShieldCheck,
   Sprout,
   BrainCircuit,
-  ChevronDown,
+  ArrowRight,
 } from "lucide-react";
-import { useState } from "react";
 import { services } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
@@ -30,7 +30,6 @@ const icons = {
  * Service cards with cover photography + expandable detail (image-forward layout).
  */
 export function Services() {
-  const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <section id="services" className="relative py-16 sm:py-24 lg:py-28">
@@ -56,7 +55,6 @@ export function Services() {
         <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {services.map((s, i) => {
             const Icon = icons[s.icon];
-            const expanded = openId === s.id;
             return (
               <motion.article
                 key={s.id}
@@ -69,11 +67,7 @@ export function Services() {
                   duration: 0.55,
                   ease: easeOutExpo,
                 }}
-                className={`group relative flex flex-col overflow-hidden rounded-3xl border bg-[var(--card-bg)] shadow-[var(--card-shadow)] transition-[colors,transform] motion-safe:md:hover:-translate-y-1 ${
-                  expanded
-                    ? "border-[var(--accent)]/50 ring-1 ring-[var(--accent)]/20"
-                    : "border-[var(--glass-border)] hover:border-[var(--accent)]/30"
-                }`}
+                className={`group relative flex flex-col overflow-hidden rounded-3xl border bg-[var(--card-bg)] shadow-[var(--card-shadow)] transition-[colors,transform] motion-safe:md:hover:-translate-y-1 border-[var(--glass-border)] hover:border-[var(--accent)]/30`}
               >
                 <div className="relative h-40 w-full shrink-0 overflow-hidden bg-slate-200">
                   <Image
@@ -102,37 +96,13 @@ export function Services() {
                     {s.short}
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={() => setOpenId(expanded ? null : s.id)}
-                    className="mt-4 inline-flex min-h-[44px] items-center gap-2 py-1 text-left text-sm font-semibold text-[var(--foreground)] transition hover:text-[var(--accent)] sm:min-h-0"
-                    aria-expanded={expanded}
+                  <Link
+                    href={`/services/${s.id}`}
+                    className="mt-4 inline-flex min-h-[44px] items-center gap-2 py-1 text-left text-sm font-semibold text-[var(--foreground)] transition hover:text-[var(--accent)] sm:min-h-0 group/btn"
                   >
-                    {expanded ? "Hide details" : "Expand details"}
-                    <motion.span
-                      animate={{ rotate: expanded ? 180 : 0 }}
-                      transition={{ duration: 0.25 }}
-                    >
-                      <ChevronDown className="h-4 w-4" />
-                    </motion.span>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {expanded && (
-                      <motion.div
-                        key="detail"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: easeOutExpo }}
-                        className="overflow-hidden"
-                      >
-                        <p className="mt-4 border-t border-[var(--glass-border)] pt-4 text-sm leading-relaxed text-[var(--muted)]">
-                          {s.details}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    View details
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  </Link>
                 </div>
 
                 <div className="pointer-events-none absolute inset-x-6 -bottom-24 h-40 rounded-full bg-[radial-gradient(circle_at_center,rgba(5,150,105,0.12),transparent_70%)] opacity-0 blur-2xl transition group-hover:opacity-100" />
