@@ -43,24 +43,21 @@ export const teamMembers: TeamMember[] = [
     name: "Chidi Okonkwo",
     role: "Chief Executive Officer",
     bio: "Leads corporate strategy and sponsor relationships for national programs, with a background in civil infrastructure and public-private delivery models.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=600&h=600&q=82",
+    imageSrc: "/handsome-sensitive-man-portrait.jpg",
   },
   {
     id: "2",
     name: "Amara Nwosu",
     role: "Chief Operating Officer",
     bio: "Owns program governance, integrated planning, and cross-sector mobilization—ensuring schedules, budgets, and quality gates stay aligned under pressure.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&h=600&q=82",
+    imageSrc: "/glamorous-african-american-woman-warm-fur-coat-pose-street.jpg",
   },
   {
     id: "3",
     name: "David Osei",
     role: "Director, Engineering & Infrastructure",
     bio: "Oversees structural, civil, and MEP coordination for large builds—championing safety culture, design assurance, and construction supervision rigor.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1507152832244-15d45e1a00b0?auto=format&fit=crop&w=600&h=600&q=82",
+    imageSrc: "/smiley-young-adult-man-looking-camera.jpg",
   },
   {
     id: "4",
@@ -76,7 +73,7 @@ export const teamMembers: TeamMember[] = [
     role: "Director, Agriculture & Agro-industry",
     bio: "Connects agronomy, processing, and traceability programs—aligning field operations with export readiness and cooperative-scale economics.",
     imageSrc:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&h=600&q=82",
+      "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=600&h=600&q=82",
   },
   {
     id: "6",
@@ -84,7 +81,7 @@ export const teamMembers: TeamMember[] = [
     role: "Head of Programs & Partnerships",
     bio: "Structures consortia, MoU pathways, and stakeholder forums so complex programs launch with clarity on roles, interfaces, and escalation ladders.",
     imageSrc:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&h=600&q=82",
+      "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=600&h=600&q=82",
   },
 ];
 
