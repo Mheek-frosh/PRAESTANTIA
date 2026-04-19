@@ -100,7 +100,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-[100svh] min-w-0 flex-col overflow-hidden bg-[#0a1628]"
+      className="relative isolate flex min-h-[100svh] min-w-0 flex-col overflow-hidden bg-white dark:bg-[#0a1628]"
     >
       <div className="pointer-events-none absolute inset-0 min-w-0">
         {HERO_SLIDES.map((s, i) => (
@@ -125,16 +125,16 @@ export function Hero() {
             />
           </motion.div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-[#0a1628]/75 to-[#0a1628]/35" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_0%,rgba(255,255,255,0.08),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(16,185,129,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-white/40 dark:from-[#0a1628] dark:via-[#0a1628]/75 dark:to-[#0a1628]/35" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_0%,rgba(0,0,0,0.03),transparent_55%)] dark:bg-[radial-gradient(ellipse_100%_70%_at_50%_0%,rgba(255,255,255,0.08),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(16,185,129,0.08),transparent_60%)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(16,185,129,0.12),transparent_60%)]" />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-1/2 z-[5] flex -translate-y-1/2 items-center justify-between px-2 sm:px-4 md:px-6">
         <button
           type="button"
           onClick={goPrev}
-          className="pointer-events-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 sm:h-11 sm:w-11"
+          className="pointer-events-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white/60 text-slate-800 backdrop-blur-sm transition hover:bg-white/90 dark:border-white/20 dark:bg-black/25 dark:text-white dark:hover:bg-black/40 sm:h-11 sm:w-11"
           aria-label="Previous slide"
         >
           <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.25} />
@@ -142,7 +142,7 @@ export function Hero() {
         <button
           type="button"
           onClick={goNext}
-          className="pointer-events-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 sm:h-11 sm:w-11"
+          className="pointer-events-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white/60 text-slate-800 backdrop-blur-sm transition hover:bg-white/90 dark:border-white/20 dark:bg-black/25 dark:text-white dark:hover:bg-black/40 sm:h-11 sm:w-11"
           aria-label="Next slide"
         >
           <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2.25} />
@@ -159,15 +159,15 @@ export function Hero() {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.45, ease: easeOutExpo }}
           >
-            <p className="max-w-3xl text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-300/95 sm:text-xs">
+            <p className="max-w-3xl text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-600 dark:text-emerald-300/95 sm:text-xs">
               {slide.eyebrow}
             </p>
 
-            <h1 className="mt-4 max-w-4xl text-balance font-display text-[clamp(1.875rem,5.5vw,3.75rem)] font-semibold leading-[1.12] tracking-tight text-white sm:mt-5">
+            <h1 className="mt-4 max-w-4xl text-balance font-display text-[clamp(1.875rem,5.5vw,3.75rem)] font-semibold leading-[1.12] tracking-tight text-slate-900 dark:text-white sm:mt-5">
               {slide.headline}
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-white/85 sm:mt-6 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-slate-600 dark:text-white/85 sm:mt-6 sm:text-lg">
               {slide.description}
             </p>
           </motion.div>
@@ -181,21 +181,21 @@ export function Hero() {
         >
           <Link
             href="/#contact"
-            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-emerald-500 px-8 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_-12px_rgba(16,185,129,0.5)] transition hover:bg-emerald-400 sm:flex-initial sm:min-w-[160px]"
+            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-500 dark:bg-emerald-500 dark:shadow-[0_16px_40px_-12px_rgba(16,185,129,0.5)] dark:hover:bg-emerald-400 sm:flex-initial sm:min-w-[160px]"
           >
             Get started
             <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
           <Link
             href="/our-company"
-            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15 sm:flex-initial sm:min-w-[160px]"
+            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/50 px-8 py-3.5 text-sm font-semibold text-slate-900 backdrop-blur-sm transition hover:border-slate-400 hover:bg-white/80 dark:border-white/40 dark:bg-white/10 dark:text-white dark:hover:border-white/60 dark:hover:bg-white/15 sm:flex-initial sm:min-w-[160px]"
           >
             Learn more
           </Link>
         </motion.div>
 
         <motion.div
-          className="mt-14 w-full max-w-3xl border-t border-white/20 pt-10 sm:mt-16 sm:pt-12"
+          className="mt-14 w-full max-w-3xl border-t border-slate-200 pt-10 dark:border-white/20 sm:mt-16 sm:pt-12"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.22, duration: 0.5, ease: easeOutExpo }}
@@ -204,10 +204,10 @@ export function Hero() {
             {heroStats.map((s) => (
               <div key={s.label} className="text-center">
                 <dt className="sr-only">{s.label}</dt>
-                <dd className="font-display text-3xl font-semibold tabular-nums text-white sm:text-4xl md:text-[2.75rem]">
+                <dd className="font-display text-3xl font-semibold tabular-nums text-slate-900 dark:text-white sm:text-4xl md:text-[2.75rem]">
                   {s.value}
                 </dd>
-                <p className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55 sm:text-[11px] sm:tracking-[0.24em]">
+                <p className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-white/55 sm:text-[11px] sm:tracking-[0.24em]">
                   {s.label}
                 </p>
               </div>
@@ -239,8 +239,8 @@ export function Hero() {
               <span
                 className={`block rounded-full transition-all duration-500 ease-out ${
                   i === active
-                    ? "h-2 w-8 bg-emerald-400"
-                    : "h-2 w-2 bg-white/35 hover:bg-white/55"
+                    ? "h-2 w-8 bg-emerald-600 dark:bg-emerald-400"
+                    : "h-2 w-2 bg-slate-300 hover:bg-slate-400 dark:bg-white/35 dark:hover:bg-white/55"
                 }`}
               />
             </button>
