@@ -64,15 +64,9 @@ export function Footer() {
                   className="object-contain object-left hidden dark:block"
                 />
               </Link>
-              <div>
-                <p className="text-sm font-semibold text-[var(--foreground)] mt-2">
-                  {company.name}
-                </p>
-                <p className="text-xs text-[var(--muted)]">{company.address}</p>
-              </div>
             </div>
             <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-[var(--muted)] sm:mt-5">
-              A Nigerian multi-sector partner delivering engineering, digital, and
+              A Nigerian multi-sector partner delivering engineering, digital, enterprise AI, and
               agro-industrial outcomes with the rigor expected by governments,
               corporates, and investors.
             </p>
