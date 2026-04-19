@@ -28,18 +28,18 @@ function heroThresholdPx() {
 }
 
 function navLinkClass(onHero: boolean, extra = "") {
-  return `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${extra} ${
+  return `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${extra} text-slate-600 hover:bg-slate-100 hover:text-slate-900 ${
     onHero
-      ? "text-white/85 hover:bg-white/10 hover:text-white"
-      : "text-[var(--muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--foreground)]"
+      ? "dark:text-white/85 dark:hover:bg-white/10 dark:hover:text-white"
+      : "dark:text-[var(--muted)] dark:hover:bg-[var(--glass-bg)] dark:hover:text-[var(--foreground)]"
   }`;
 }
 
 function dropdownItemClass(onHero: boolean) {
-  return `block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
+  return `block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors text-slate-600 hover:bg-slate-50 hover:text-slate-900 ${
     onHero
-      ? "text-slate-900 hover:bg-emerald-50"
-      : "text-[var(--foreground)] hover:bg-[var(--glass-bg)]"
+      ? "dark:text-white dark:hover:bg-emerald-900/50"
+      : "dark:text-[var(--foreground)] dark:hover:bg-[var(--glass-bg)]"
   }`;
 }
 
@@ -137,41 +137,29 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: easeOutExpo }}
       >
         <div
-          className={`mx-auto flex max-w-6xl min-w-0 items-center justify-between gap-2 rounded-2xl border px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-5 sm:py-3 ${
+          className={`mx-auto flex max-w-6xl min-w-0 items-center justify-between gap-2 rounded-2xl border px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-5 sm:py-3 border-slate-200 bg-white text-slate-900 shadow-sm ${
             onHero
-              ? "border-white/15 bg-slate-950/25 text-white shadow-none backdrop-blur-md"
+              ? "dark:border-white/15 dark:bg-slate-950/25 dark:text-white dark:shadow-none dark:backdrop-blur-md"
               : scrolled
-                ? "border-[var(--glass-border)] bg-[var(--nav-bg-scrolled)] text-[var(--foreground)] shadow-[var(--nav-shadow)] backdrop-blur-xl"
-                : "border-transparent bg-transparent text-[var(--foreground)]"
+                ? "dark:border-[var(--glass-border)] dark:bg-[var(--nav-bg-scrolled)] dark:text-[var(--foreground)] dark:shadow-[var(--nav-shadow)] dark:backdrop-blur-xl"
+                : "dark:border-transparent dark:bg-transparent dark:text-[var(--foreground)] dark:shadow-none"
           }`}
         >
           <Link href="/" className="group relative flex h-8 w-36 shrink-0 items-center sm:h-10 sm:w-44">
-            {onHero ? (
-              <Image
-                src="/dark.png"
-                alt="Praestantia Logo"
-                fill
-                priority
-                className="object-contain object-left"
-              />
-            ) : (
-              <>
-                <Image
-                  src="/light.jpeg"
-                  alt="Praestantia Logo"
-                  fill
-                  priority
-                  className="object-contain object-left block dark:hidden"
-                />
-                <Image
-                  src="/dark.png"
-                  alt="Praestantia Logo"
-                  fill
-                  priority
-                  className="object-contain object-left hidden dark:block"
-                />
-              </>
-            )}
+            <Image
+              src="/light.jpeg"
+              alt="Praestantia Logo"
+              fill
+              priority
+              className="object-contain object-left block dark:hidden"
+            />
+            <Image
+              src="/dark.png"
+              alt="Praestantia Logo"
+              fill
+              priority
+              className="object-contain object-left hidden dark:block"
+            />
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
@@ -188,10 +176,10 @@ export function Navbar() {
                 aria-expanded={aboutOpen}
                 aria-haspopup="menu"
                 onClick={toggleAbout}
-                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors text-slate-600 hover:bg-slate-100 hover:text-slate-900 ${
                   onHero
-                    ? "text-white/85 hover:bg-white/10 hover:text-white"
-                    : "text-[var(--muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--foreground)]"
+                    ? "dark:text-white/85 dark:hover:bg-white/10 dark:hover:text-white"
+                    : "dark:text-[var(--muted)] dark:hover:bg-[var(--glass-bg)] dark:hover:text-[var(--foreground)]"
                 }`}
               >
                 About
@@ -230,10 +218,10 @@ export function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className={`inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border backdrop-blur-md transition ${
+              className={`inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition ${
                 onHero
-                  ? "border-white/25 bg-white/10 text-white hover:border-white/40"
-                  : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)] hover:border-[var(--accent)]/40 hover:text-[var(--accent)]"
+                  ? "dark:border-white/25 dark:bg-white/10 dark:text-white dark:hover:border-white/40 dark:backdrop-blur-md"
+                  : "dark:border-[var(--glass-border)] dark:bg-[var(--glass-bg)] dark:text-[var(--foreground)] dark:hover:border-[var(--accent)]/40 dark:hover:text-[var(--accent)] dark:backdrop-blur-md"
               }`}
               aria-label="Toggle color theme"
             >
@@ -257,10 +245,10 @@ export function Navbar() {
             </Link>
             <button
               type="button"
-              className={`inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border backdrop-blur-md lg:hidden ${
+              className={`inline-flex h-11 min-h-[44px] w-11 min-w-[44px] items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 lg:hidden ${
                 onHero
-                  ? "border-white/25 bg-white/10 text-white"
-                  : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)]"
+                  ? "dark:border-white/25 dark:bg-white/10 dark:text-white dark:backdrop-blur-md"
+                  : "dark:border-[var(--glass-border)] dark:bg-[var(--glass-bg)] dark:text-[var(--foreground)] dark:backdrop-blur-md"
               }`}
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
