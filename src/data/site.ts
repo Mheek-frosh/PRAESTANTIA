@@ -10,7 +10,7 @@ export const company = {
   tagline: "Engineering Excellence. Digital Innovation. Sustainable Growth.",
   legal: "Praestantia Projects Limited",
   address: "Abuja & Lagos, Nigeria",
-  email: "hello@praestantia.ng",
+  email: "info@praestantia.ng",
   phone: "+234 (0) 800 PRAESTANTIA",
 };
 
