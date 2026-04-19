@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { User } from "lucide-react";
 import { testimonials } from "@/data/site";
 import { easeOutExpo } from "@/lib/motion";
 
@@ -45,14 +45,8 @@ export function Testimonials() {
             >
               <figure className="group flex h-full flex-col rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-6 shadow-[var(--card-shadow)] transition-[border-color,box-shadow] duration-300 hover:border-[var(--accent)]/20 hover:shadow-[0_28px_70px_-40px_rgba(5,150,105,0.18)] sm:rounded-3xl sm:p-7">
                 <div className="flex items-start gap-4">
-                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl ring-1 ring-[var(--glass-border)] sm:h-16 sm:w-16">
-                    <Image
-                      src={t.imageSrc}
-                      alt=""
-                      fill
-                      sizes="(max-width: 1024px) 80px, 96px"
-                      className="object-cover object-top"
-                    />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--glass-bg)] ring-1 ring-[var(--glass-border)] sm:h-16 sm:w-16">
+                    <User className="h-6 w-6 text-[var(--muted)] sm:h-7 sm:w-7" />
                   </div>
                   <figcaption className="min-w-0 flex-1 pt-0.5">
                     <p className="font-semibold leading-snug text-[var(--foreground)]">
