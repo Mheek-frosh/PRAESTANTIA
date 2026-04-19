@@ -15,26 +15,7 @@ function nextId() {
 }
 
 const WELCOME =
-  "Hello — I'm your Praestantia assistant. Ask about our sectors (engineering, ICT, cybersecurity, agriculture, government programs) or say **contact** for next steps.";
-
-function replyFor(input: string): string {
-  const q = input.toLowerCase().trim();
-  if (!q) return "Send a short question and I'll point you to the right section of our site.";
-  if (/(hello|hi|hey)\b/.test(q))
-    return "Welcome. I can summarize capabilities, services, or help you reach our partnerships team.";
-  if (/service|capabilit|offer|what do you/.test(q))
-    return "We deliver across **Engineering & Construction**, **Project Management**, **ICT & Software**, **Cybersecurity & Cloud**, **Agriculture & Agro**, and **Consultancy & Turnkey** programs — see the Services section for detail.";
-  if (/project|portfolio|case/.test(q))
-    return "Explore the **Projects** grid for representative programs across infrastructure, technology, and agriculture (illustrative case profiles).";
-  if (/contact|email|call|partner|proposal|rfp/.test(q))
-    return "Use the **Contact** section at the bottom of the page — include your organization, timeline, and stakeholders. This assistant is informational only.";
-  if (/price|cost|quote|budget/.test(q))
-    return "Commercial terms are scoped per engagement. Share context via **Contact** and our team will respond within two business days.";
-  if (/who|about|company|praestantia/.test(q))
-    return "**Praestantia Projects Ltd** is a Nigerian multi-sector partner for national-scale programs — reliability, innovation, and governance-ready delivery.";
-  if (/thank|thanks/.test(q)) return "You're welcome. We're here when you're ready to go deeper.";
-  return "I've noted that. For tailored guidance, browse **Services** and **Why Us**, or leave a message in **Contact** with your objectives.";
-}
+  "Hello! Need immediate assistance or have a project inquiry? Message us below to connect directly with our WhatsApp support team.";
 
 /**
  * Floating assistant on a fixed white UI — reads clearly on light or dark site themes.
@@ -55,17 +36,13 @@ export function AssistantChat() {
   const send = useCallback(() => {
     const text = draft.trim();
     if (!text) return;
+    
+    // Redirect to WhatsApp with the pre-filled message
+    const waUrl = `https://wa.me/14432248459?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+    
     setDraft("");
-    const userMsg: Msg = { id: nextId(), role: "user", text };
-    setMessages((m) => [...m, userMsg]);
-    setTyping(true);
-    window.setTimeout(() => {
-      setTyping(false);
-      setMessages((m) => [
-        ...m,
-        { id: nextId(), role: "assistant", text: replyFor(text) },
-      ]);
-    }, 650 + Math.min(text.length * 12, 900));
+    setOpen(false);
   }, [draft]);
 
   return (
@@ -88,10 +65,10 @@ export function AssistantChat() {
                   </span>
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold leading-tight text-slate-900">
-                      Assistant
+                      WhatsApp Support
                     </p>
                     <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
-                      AI · Informational
+                      Online · Replies instantly
                     </p>
                   </div>
                 </div>
