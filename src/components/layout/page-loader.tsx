@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { easeOutExpo } from "@/lib/motion";
+import Image from "next/image";
 
 const SESSION_KEY = "praestantia_intro_seen";
 
@@ -100,14 +101,20 @@ export function PageLoader() {
               animate={{ scale: 1, opacity: 1, rotateX: 0 }}
               transition={{ duration: 0.65, ease: easeOutExpo }}
             >
-              <motion.span
-                className="font-display text-4xl font-semibold tracking-tight text-emerald-600 sm:text-[2.75rem]"
+              <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.12, duration: 0.5, ease: easeOutExpo }}
+                className="relative h-12 w-12 sm:h-16 sm:w-16"
               >
-                P
-              </motion.span>
+                <Image
+                  src="/loho.jpeg"
+                  alt="Praestantia Logo Icon"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
               <motion.div
                 className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl"
                 initial={false}
