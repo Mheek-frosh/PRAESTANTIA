@@ -64,8 +64,7 @@ export const teamMembers: TeamMember[] = [
     name: "Funmi Adebayo",
     role: "Director, Digital & Cybersecurity",
     bio: "Guards cloud estates, identity systems, and software delivery pipelines—embedding security architecture and resilience testing from day one.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1bf304?auto=format&fit=crop&w=600&h=600&q=82",
+    imageSrc: "/blackwoman.png",
   },
   {
     id: "5",
@@ -80,8 +79,7 @@ export const teamMembers: TeamMember[] = [
     name: "Halima Yusuf",
     role: "Head of Programs & Partnerships",
     bio: "Structures consortia, MoU pathways, and stakeholder forums so complex programs launch with clarity on roles, interfaces, and escalation ladders.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=600&h=600&q=82",
+    imageSrc: "/blackwoman2.png",
   },
 ];
 
