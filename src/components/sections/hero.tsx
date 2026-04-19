@@ -13,7 +13,7 @@ const q = "auto=format&fit=crop";
 /** Four slides — image, eyebrow, headline, and body copy stay in sync per theme. */
 const HERO_SLIDES = [
   {
-    imageSrc: `https://images.unsplash.com/photo-1509391366360-2e959784a478?${q}&w=2400&q=85`,
+    imageSrc: `https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?${q}&w=2400&q=85`,
     eyebrow: company.name,
     headline: company.tagline,
     description:
