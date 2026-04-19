@@ -44,7 +44,7 @@ export const teamMembers: TeamMember[] = [
     role: "Chief Executive Officer",
     bio: "Leads corporate strategy and sponsor relationships for national programs, with a background in civil infrastructure and public-private delivery models.",
     imageSrc:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&h=600&q=82",
+      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=600&h=600&q=82",
   },
   {
     id: "2",
@@ -60,7 +60,7 @@ export const teamMembers: TeamMember[] = [
     role: "Director, Engineering & Infrastructure",
     bio: "Oversees structural, civil, and MEP coordination for large builds—championing safety culture, design assurance, and construction supervision rigor.",
     imageSrc:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&h=600&q=82",
+      "https://images.unsplash.com/photo-1507152832244-15d45e1a00b0?auto=format&fit=crop&w=600&h=600&q=82",
   },
   {
     id: "4",
@@ -68,7 +68,7 @@ export const teamMembers: TeamMember[] = [
     role: "Director, Digital & Cybersecurity",
     bio: "Guards cloud estates, identity systems, and software delivery pipelines—embedding security architecture and resilience testing from day one.",
     imageSrc:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&h=600&q=82",
+      "https://images.unsplash.com/photo-1531123897727-8f129e1bf304?auto=format&fit=crop&w=600&h=600&q=82",
   },
   {
     id: "5",
@@ -84,7 +84,7 @@ export const teamMembers: TeamMember[] = [
     role: "Head of Programs & Partnerships",
     bio: "Structures consortia, MoU pathways, and stakeholder forums so complex programs launch with clarity on roles, interfaces, and escalation ladders.",
     imageSrc:
-      "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=600&h=600&q=82",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&h=600&q=82",
   },
 ];
 
