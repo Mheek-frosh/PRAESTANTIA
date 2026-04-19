@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail } from "lucide-react";
 import { company } from "@/data/site";
 
 /** Brand icons (not all vendor glyphs ship in lucide builds). */
@@ -95,7 +94,6 @@ export function Footer() {
               </p>
               <ul className="mt-4 space-y-3 text-sm text-[var(--foreground)]/85">
                 <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-[var(--accent)]" />
                   <span>{company.email}</span>
                 </li>
                 <li>{company.phone}</li>
