@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -144,28 +145,33 @@ export function Navbar() {
                 : "border-transparent bg-transparent text-[var(--foreground)]"
           }`}
         >
-          <Link href="/" className="group flex min-w-0 shrink items-center gap-2 sm:gap-3">
-            <span
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border text-sm font-semibold shadow-sm backdrop-blur-md sm:h-11 sm:w-11 ${
-                onHero
-                  ? "border-white/25 bg-white/10 text-emerald-300"
-                  : "border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--accent)]"
-              }`}
-            >
-              P
-            </span>
-            <span className="flex min-w-0 flex-col leading-tight">
-              <span
-                className={`truncate text-xs font-semibold tracking-tight sm:text-sm ${onHero ? "text-white" : "text-[var(--foreground)]"}`}
-              >
-                {company.name.split(" ")[0]}
-              </span>
-              <span
-                className={`truncate text-[10px] font-medium uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-[0.2em] ${onHero ? "text-white/65" : "text-[var(--muted)]"}`}
-              >
-                {company.name.split(" ").slice(1).join(" ")}
-              </span>
-            </span>
+          <Link href="/" className="group relative flex h-8 w-36 shrink-0 items-center sm:h-10 sm:w-44">
+            {onHero ? (
+              <Image
+                src="/dark.png"
+                alt="Praestantia Logo"
+                fill
+                priority
+                className="object-contain object-left"
+              />
+            ) : (
+              <>
+                <Image
+                  src="/light.jpeg"
+                  alt="Praestantia Logo"
+                  fill
+                  priority
+                  className="object-contain object-left block dark:hidden"
+                />
+                <Image
+                  src="/dark.png"
+                  alt="Praestantia Logo"
+                  fill
+                  priority
+                  className="object-contain object-left hidden dark:block"
+                />
+              </>
+            )}
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">

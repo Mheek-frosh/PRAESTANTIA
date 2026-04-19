@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail } from "lucide-react";
 import { company } from "@/data/site";
 
@@ -48,12 +49,23 @@ export function Footer() {
       <div className="mx-auto min-w-0 max-w-6xl px-3 py-12 sm:px-6 sm:py-14 lg:px-10">
         <div className="grid gap-8 sm:gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] text-sm font-semibold text-[var(--accent)] backdrop-blur-md">
-                P
-              </span>
+            <div className="flex flex-col items-start gap-4">
+              <Link href="/" className="relative block h-10 w-44">
+                <Image
+                  src="/light.jpeg"
+                  alt="Praestantia Logo"
+                  fill
+                  className="object-contain object-left block dark:hidden"
+                />
+                <Image
+                  src="/dark.png"
+                  alt="Praestantia Logo"
+                  fill
+                  className="object-contain object-left hidden dark:block"
+                />
+              </Link>
               <div>
-                <p className="text-sm font-semibold text-[var(--foreground)]">
+                <p className="text-sm font-semibold text-[var(--foreground)] mt-2">
                   {company.name}
                 </p>
                 <p className="text-xs text-[var(--muted)]">{company.address}</p>
