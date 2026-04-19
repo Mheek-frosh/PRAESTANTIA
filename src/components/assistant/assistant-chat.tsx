@@ -15,7 +15,7 @@ function nextId() {
 }
 
 const WELCOME =
-  "Hello! Need immediate assistance or have a project inquiry? Message us below to connect directly with our WhatsApp support team.";
+  "Hello! Welcome to Praestantia Projects. How can our team assist you today? Please briefly describe what you are looking for.";
 
 /**
  * Floating assistant on a fixed white UI — reads clearly on light or dark site themes.
@@ -36,14 +36,47 @@ export function AssistantChat() {
   const send = useCallback(() => {
     const text = draft.trim();
     if (!text) return;
-    
-    // Redirect to WhatsApp with the pre-filled message
-    const waUrl = `https://wa.me/14432248459?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, "_blank", "noopener,noreferrer");
-    
     setDraft("");
-    setOpen(false);
-  }, [draft]);
+    
+    const userMsg: Msg = { id: nextId(), role: "user", text };
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
+    setTyping(true);
+
+    window.setTimeout(() => {
+      setTyping(false);
+      
+      const userMessageCount = newMessages.filter(m => m.role === "user").length;
+      
+      if (userMessageCount === 1) {
+        setMessages((m) => [
+          ...m,
+          { 
+            id: nextId(), 
+            role: "assistant", 
+            text: "Thank you! Could you share just a little more detail about your timeline or specific requirements? Once you reply, I'll transfer our chat directly to a specialist on WhatsApp." 
+          },
+        ]);
+      } else {
+        setMessages((m) => [
+          ...m,
+          { id: nextId(), role: "assistant", text: "Perfect. Redirecting you to our WhatsApp support team now..." },
+        ]);
+
+        const chatHistory = newMessages
+          .filter(m => m.role === "user")
+          .map((m, i) => `User: ${m.text}`)
+          .join("\n");
+        
+        const payload = `*New Website Inquiry*\n\n*Client Request Context:*\n${chatHistory}\n\n*Please assist me!*`;
+        
+        const waUrl = `https://wa.me/14432248459?text=${encodeURIComponent(payload)}`;
+        window.open(waUrl, "_blank", "noopener,noreferrer");
+        
+        setTimeout(() => setOpen(false), 2500);
+      }
+    }, 750);
+  }, [draft, messages]);
 
   return (
     <div className="pointer-events-none fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-[max(0.75rem,env(safe-area-inset-right))] z-[48] flex max-w-[100vw] flex-col items-end sm:bottom-8 sm:right-8">
