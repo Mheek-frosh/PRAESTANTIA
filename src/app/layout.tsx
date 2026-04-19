@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: company.name,
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${company.name}`,
     description:
       "Engineering excellence, digital innovation, and sustainable growth for Nigeria's most demanding programs.",

@@ -108,7 +108,7 @@ export function PageLoader() {
                 className="relative h-12 w-12 sm:h-16 sm:w-16"
               >
                 <Image
-                  src="/loho.jpeg"
+                  src="/image.png"
                   alt="Praestantia Logo Icon"
                   fill
                   className="object-contain"
