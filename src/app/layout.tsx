@@ -24,8 +24,14 @@ export const viewport: Viewport = {
   themeColor: "#f8fafc",
 };
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://www.praestantialtd.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://praestantia.ng"),
+  metadataBase: new URL(baseUrl),
   title: {
     default: `${company.name} | Engineering, Digital & National Programs`,
     template: `%s | ${company.name}`,
@@ -56,9 +62,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/image.png",
-        width: 512,
-        height: 512,
+        width: 400,
+        height: 400,
         alt: "Praestantia Projects",
+        type: "image/png",
       },
     ],
   },
@@ -77,7 +84,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: company.name,
   legalName: company.legal,
-  url: "https://praestantia.ng",
+  url: "https://www.praestantialtd.com",
   email: company.email,
   address: {
     "@type": "PostalAddress",
