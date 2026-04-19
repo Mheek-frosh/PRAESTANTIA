@@ -53,12 +53,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_NG",
     siteName: company.name,
+    images: [
+      {
+        url: "/image.png",
+        width: 512,
+        height: 512,
+        alt: "Praestantia Projects",
+      },
+    ],
   },
   twitter: {
     card: "summary",
     title: `${company.name}`,
     description:
       "Engineering excellence, digital innovation, and sustainable growth for Nigeria's most demanding programs.",
+    images: ["/image.png"],
   },
   robots: { index: true, follow: true },
 };
