@@ -48,7 +48,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: "naomi",
     name: "Naomi Uwezi Ewhe",
-    role: "Director of Operations",
+    role: "ED Sales and Marketing",
     bio: "\"Innovation distinguishes between a leader and a follower.\" Dedicated to driving operational excellence and fostering a culture of continuous growth and collaboration.",
     imageSrc: "/ed.jpeg",
   },
