@@ -46,6 +46,13 @@ export const teamMembers: TeamMember[] = [
     imageSrc: "/handsome-sensitive-man-portrait.jpg",
   },
   {
+    id: "naomi",
+    name: "Naomi Uwezi Ewhe",
+    role: "Director of Operations",
+    bio: "\"Innovation distinguishes between a leader and a follower.\" Dedicated to driving operational excellence and fostering a culture of continuous growth and collaboration.",
+    imageSrc: "/ed.jpeg",
+  },
+  {
     id: "2",
     name: "Amara Nwosu",
     role: "Chief Operating Officer",
