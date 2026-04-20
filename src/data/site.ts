@@ -11,7 +11,7 @@ export const company = {
   legal: "Praestantia Projects Limited",
   address: "Abuja & Lagos, Nigeria",
   email: "info@praestantialtd.com",
-  phone: "+234 (0) 800 PRAESTANTIA",
+  phone: "+2348023576290",
 };
 
 export type ProjectCategory = "Infrastructure" | "Tech" | "Agriculture";
