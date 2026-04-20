@@ -140,29 +140,43 @@ export function Contact() {
             </form>
           </motion.div>
         </div>
-      </div>
 
-      <motion.div
-        className="mt-16 sm:mt-24 lg:mt-28"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
-      >
-        <div className="relative h-[400px] w-full overflow-hidden border-y border-[var(--glass-border)] sm:h-[500px]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.816853288219!2d7.495082!3d9.05785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b59b02dc511%3A0x8673a6e9a68a3560!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1713554160000!5m2!1sen!2sus"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="h-full w-full grayscale contrast-125 opacity-90 transition-opacity duration-700 hover:grayscale-0 dark:opacity-60 dark:invert dark:hue-rotate-180 dark:hover:invert-0 dark:hover:hue-rotate-0 dark:hover:opacity-100"
-          />
-          <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]" />
-        </div>
-      </motion.div>
+        <motion.div
+          className="mt-12 sm:mt-16"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, delay: 0.1, ease: easeOutExpo }}
+        >
+          <div className="relative h-[300px] w-full overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] sm:h-[400px] sm:rounded-3xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.816853288219!2d7.495082!3d9.05785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b59b02dc511%3A0x8673a6e9a68a3560!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1713554160000!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-full w-full grayscale contrast-125 opacity-90 transition-opacity duration-700 hover:grayscale-0 dark:opacity-60 dark:invert dark:hue-rotate-180 dark:hover:invert-0 dark:hover:hue-rotate-0 dark:hover:opacity-100"
+            />
+            
+            {/* Overlay Button */}
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+              <a 
+                href="https://maps.app.goo.gl/Abuja-Location-URL" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-[var(--card-bg)]/80 px-3 py-2 text-xs font-medium text-[var(--foreground)] backdrop-blur-md transition hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+              >
+                <span>Open in Maps</span>
+                <MapPin className="h-3 w-3" />
+              </a>
+            </div>
+            
+            <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_100px_rgba(0,0,0,0.2)]" />
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
