@@ -150,7 +150,7 @@ export function Contact() {
         >
           <div className="relative h-[300px] w-full overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] sm:h-[400px] sm:rounded-3xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.816853288219!2d7.495082!3d9.05785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b59b02dc511%3A0x8673a6e9a68a3560!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1713554160000!5m2!1sen!2sus"
+              src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=22/24%20Arakawa%20Street,%20Agungi,%20Lekki,%20Lagos+(Praestantia%20Projects%20Ltd)&t=&z=15&ie=UTF8&iwloc=B&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -163,7 +163,7 @@ export function Contact() {
             {/* Overlay Button */}
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
               <a 
-                href="https://maps.app.goo.gl/Abuja-Location-URL" 
+                href="https://www.google.com/maps/search/?api=1&query=22%2F24+Arakawa+Street+Agungi+Lekki+Lagos" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-[var(--card-bg)]/80 px-3 py-2 text-xs font-medium text-[var(--foreground)] backdrop-blur-md transition hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
