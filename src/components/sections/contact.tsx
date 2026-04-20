@@ -68,20 +68,8 @@ export function Contact() {
                 <span className="font-semibold text-[var(--foreground)]">
                   Email:
                 </span>{" "}
+                {company.email}
               </div>
-            </div>
-
-            <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--glass-border)] shadow-[var(--card-shadow)] sm:rounded-3xl bg-[var(--card-bg)]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.816853288219!2d7.495082!3d9.05785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b59b02dc511%3A0x8673a6e9a68a3560!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1713554160000!5m2!1sen!2sus"
-                width="100%"
-                height="300"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full grayscale contrast-125 opacity-90 dark:opacity-75 dark:invert dark:hue-rotate-180"
-              />
             </div>
           </motion.div>
 
@@ -114,7 +102,7 @@ export function Contact() {
                     type="email"
                     name="email"
                     autoComplete="email"
-                    placeholder="you@organization.gov.ng"
+                    placeholder="you@company.com"
                     className="min-h-[48px] rounded-xl border border-[var(--glass-border)] bg-[var(--input-bg)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/15 sm:min-h-0 sm:text-sm"
                   />
                 </label>
@@ -153,6 +141,28 @@ export function Contact() {
           </motion.div>
         </div>
       </div>
+
+      <motion.div
+        className="mt-16 sm:mt-24 lg:mt-28"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        <div className="relative h-[400px] w-full overflow-hidden border-y border-[var(--glass-border)] sm:h-[500px]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.816853288219!2d7.495082!3d9.05785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b59b02dc511%3A0x8673a6e9a68a3560!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1713554160000!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen={false}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-full w-full grayscale contrast-125 opacity-90 transition-opacity duration-700 hover:grayscale-0 dark:opacity-60 dark:invert dark:hue-rotate-180 dark:hover:invert-0 dark:hover:hue-rotate-0 dark:hover:opacity-100"
+          />
+          <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]" />
+        </div>
+      </motion.div>
     </section>
   );
 }

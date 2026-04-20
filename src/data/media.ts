@@ -26,7 +26,7 @@ export const media = {
     ict: `https://images.unsplash.com/photo-1517694712202-14dd9538aa97?${q}&w=900&q=80`,
     cyber: `https://images.unsplash.com/photo-1563986768609-322da13575f3?${q}&w=900&q=80`,
     agro: `https://images.unsplash.com/photo-1625246333195-78d9c38ad449?${q}&w=900&q=80`,
-    consulting: `https://images.unsplash.com/photo-1507676184212-d03ab07a01e7?${q}&w=900&q=80`,
+    consulting: `https://images.unsplash.com/photo-1517048676732-d65bc937f952?${q}&w=900&q=80`,
     ai: `https://images.unsplash.com/photo-1677442136019-21780ecad995?${q}&w=900&q=80`,
   },
   /** Client portraits for testimonials (replace with real headshots when available). */
@@ -36,11 +36,11 @@ export const media = {
     t3: `https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?${q}&w=400&h=400&q=82`,
   },
   projects: {
-    p1: `https://images.unsplash.com/photo-1590644312911-4d12900d2f2e?${q}&w=1200&q=80`,
+    p1: `https://images.unsplash.com/photo-1517649763962-0c623066013b?${q}&w=1200&q=80`,
     p2: `https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?${q}&w=1200&q=80`,
     p3: `https://images.unsplash.com/photo-1558494949-ef010cbdcc31?${q}&w=1200&q=80`,
     p4: `https://images.unsplash.com/photo-1460925895917-afdab827c52f?${q}&w=1200&q=80`,
-    p5: `https://images.unsplash.com/photo-1586201379201-ddca671fe3f9?${q}&w=1200&q=80`,
+    p5: `https://images.unsplash.com/photo-1565793298595-6a879b1d9492?${q}&w=1200&q=80`,
     p6: `https://images.unsplash.com/photo-1500382017468-9049fed747ef?${q}&w=1200&q=80`,
   },
 } as const;
