@@ -19,6 +19,9 @@ const fadeUp = {
  * Leadership and team narrative — illustrative profiles; replace with real bios when ready.
  */
 export function TeamPage() {
+  const ceo = teamMembers.find((m) => m.id === "1");
+  const restOfTeam = teamMembers.filter((m) => m.id !== "1");
+
   return (
     <article>
       <InnerPageHero
@@ -39,8 +42,40 @@ export function TeamPage() {
             coverage may evolve as programs scale.
           </motion.p>
 
+          {ceo && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: easeOutExpo }}
+              className="mt-12 overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] sm:rounded-3xl lg:mt-14 lg:flex"
+            >
+              <div className="relative aspect-[4/3] lg:aspect-auto lg:w-2/5 bg-slate-200">
+                <Image
+                  src={ceo.imageSrc}
+                  alt={ceo.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent opacity-90 lg:bg-gradient-to-r" />
+              </div>
+              <div className="flex flex-1 flex-col justify-center px-6 py-8 sm:p-10 lg:p-12">
+                <h2 className="font-display text-2xl font-semibold text-[var(--foreground)] sm:text-3xl">{ceo.name}</h2>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-[var(--accent)] sm:text-base">
+                  {ceo.role}
+                </p>
+                <div className="mt-6 flex-1 space-y-4 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+                  {ceo.bio.split('\n\n').map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
           <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-8">
-            {teamMembers.map((m, i) => (
+            {restOfTeam.map((m, i) => (
               <motion.li
                 key={m.id}
                 initial={{ opacity: 0, y: 24 }}

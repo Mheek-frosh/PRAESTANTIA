@@ -40,9 +40,9 @@ export type TeamMember = {
 export const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Paul Babatunde Ewhe",
+    name: "Paul Babatunde Ewhe MiBF, MDS, PMP, CPMAI",
     role: "Chief Executive Officer",
-    bio: "Leads corporate strategy and sponsor relationships for national programs, with a background in civil infrastructure and public-private delivery models.",
+    bio: "Strategic and results-oriented executive with over two decades of leadership experience in technology, governance, quality management, and enterprise transformation within highly regulated industries. ISO-certified Quality Management Systems expert and PMP/PMI-CPMAI certified professional with proven expertise in AI governance, digital transformation, PMO governance, core banking modernization, ISO 27001/ISO 9001 transitions, PCI-DSS compliance, disaster recovery, and payment infrastructure delivery across multinational environments.\n\nKnown for aligning enterprise technology initiatives with business growth objectives, strengthening regulatory and risk management frameworks, and leading large-scale strategic programs that improve efficiency, resilience, and customer experience. Adept at engaging executive stakeholders, leading cross-functional and multicultural teams, optimizing resources, and delivering measurable value through disciplined execution and strong governance leadership.",
     imageSrc: "/ceo.jpeg",
   },
   {
