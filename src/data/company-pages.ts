@@ -40,10 +40,10 @@ export type TeamMember = {
 export const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Chidi Okonkwo",
+    name: "Paul Babatunde Ewhe",
     role: "Chief Executive Officer",
     bio: "Leads corporate strategy and sponsor relationships for national programs, with a background in civil infrastructure and public-private delivery models.",
-    imageSrc: "/handsome-sensitive-man-portrait.jpg",
+    imageSrc: "/ceo.jpeg",
   },
   {
     id: "naomi",
