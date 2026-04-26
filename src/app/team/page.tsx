@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MarketingShell } from "@/components/marketing-shell";
 import { TeamPage } from "@/components/pages/team-page";
 import { company } from "@/data/site";
+import "./team.css";
 
 export const metadata: Metadata = {
   title: "Our Team",

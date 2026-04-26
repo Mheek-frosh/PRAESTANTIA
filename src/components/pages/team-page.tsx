@@ -3,162 +3,286 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Users, Award, Globe, Briefcase } from "lucide-react";
 import { teamMembers } from "@/data/company-pages";
 import { easeOutExpo } from "@/lib/motion";
-import { InnerPageHero } from "@/components/pages/inner-page-hero";
 
+/* ── animation presets ── */
 const fadeUp = {
-  initial: { opacity: 0, y: 22 },
+  initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-50px" },
-  transition: { duration: 0.5, ease: easeOutExpo },
+  viewport: { once: true, margin: "-60px" },
+  transition: { duration: 0.7, ease: easeOutExpo },
 };
 
+const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.8, ease: easeOutExpo },
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.08 } },
+  viewport: { once: true, margin: "-60px" },
+};
+
+const staggerChild = {
+  initial: { opacity: 0, y: 30, scale: 0.97 },
+  whileInView: { opacity: 1, y: 0, scale: 1 },
+  transition: { duration: 0.6, ease: easeOutExpo },
+};
+
+/* ── stat counters for the hero ── */
+const stats = [
+  { icon: Users, value: "20+", label: "Professionals" },
+  { icon: Award, value: "15+", label: "Years Combined" },
+  { icon: Globe, value: "5+", label: "Industries" },
+  { icon: Briefcase, value: "50+", label: "Projects Delivered" },
+];
+
 /**
- * Leadership and team narrative — illustrative profiles; replace with real bios when ready.
+ * Leadership and team narrative — premium redesign with immersive hero,
+ * founder duo spotlight, interactive team grid, and polished CTA.
  */
 export function TeamPage() {
   const ceo = teamMembers.find((m) => m.id === "1");
   const cofounder = teamMembers.find((m) => m.id === "cofounder");
-  const restOfTeam = teamMembers.filter((m) => m.id !== "1" && m.id !== "cofounder");
+  const restOfTeam = teamMembers.filter(
+    (m) => m.id !== "1" && m.id !== "cofounder"
+  );
 
   return (
     <article>
-      <InnerPageHero
-        eyebrow="Our Team"
-        title="Leaders who bridge policy, engineering, and delivery"
-        lead="A compact leadership bench aligned to how sponsors actually buy and govern work—technical depth in the room with commercial judgment and field empathy."
-      />
+      {/* ════════════════════════════════════════════════════════════════════
+          HERO — immersive gradient mesh background with stat counters
+      ════════════════════════════════════════════════════════════════════ */}
+      <header className="team-hero">
+        {/* animated gradient mesh */}
+        <div className="team-hero__mesh" aria-hidden="true" />
+        {/* decorative grid overlay */}
+        <div className="team-hero__grid" aria-hidden="true" />
 
-      <section className="border-b border-[var(--glass-border)] bg-[var(--background)] px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
-        <div className="mx-auto max-w-6xl">
+        <div className="team-hero__inner">
           <motion.p
-            {...fadeUp}
-            className="max-w-3xl text-pretty text-base leading-relaxed text-[var(--muted)] sm:text-lg"
+            className="team-hero__eyebrow"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: easeOutExpo }}
           >
-            We staff programs with principal-led teams—not endless layers of account managers. That means
-            executives stay close to risk, architects stay close to integration points, and program leads stay
-            close to site reality. The profiles below represent our current leadership structure; titles and
-            coverage may evolve as programs scale.
+            Our Team
           </motion.p>
 
-          {ceo && (
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease: easeOutExpo }}
-              className="mt-12 overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] sm:rounded-3xl lg:mt-14 lg:flex"
-            >
-              <div className="relative aspect-[4/3] lg:aspect-auto lg:w-2/5 bg-slate-200">
-                <Image
-                  src={ceo.imageSrc}
-                  alt={ceo.name}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent opacity-90 lg:bg-gradient-to-r" />
-              </div>
-              <div className="flex flex-1 flex-col justify-center px-6 py-8 sm:p-10 lg:p-12">
-                <h2 className="font-display text-2xl font-semibold text-[var(--foreground)] sm:text-3xl">{ceo.name}</h2>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-[var(--accent)] sm:text-base">
-                  {ceo.role}
-                </p>
-                <div className="mt-6 flex-1 space-y-4 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
-                  {ceo.bio.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
+          <motion.h1
+            className="team-hero__title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.06, duration: 0.6, ease: easeOutExpo }}
+          >
+            Leaders who bridge{" "}
+            <span className="team-hero__highlight">policy</span>,{" "}
+            <span className="team-hero__highlight">engineering</span>, and{" "}
+            <span className="team-hero__highlight">delivery</span>
+          </motion.h1>
 
-          {/* ── Co-Founder featured card ── */}
-          {cofounder && (
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease: easeOutExpo, delay: 0.1 }}
-              className="mt-12 overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] sm:rounded-3xl lg:mt-14 lg:flex"
-            >
-              <div className="relative aspect-[4/3] lg:aspect-auto lg:w-2/5 bg-slate-200">
-                <Image
-                  src={cofounder.imageSrc}
-                  alt={cofounder.name}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent opacity-90 lg:bg-gradient-to-r" />
-              </div>
-              <div className="flex flex-1 flex-col justify-center px-6 py-8 sm:p-10 lg:p-12">
-                <h2 className="font-display text-2xl font-semibold text-[var(--foreground)] sm:text-3xl">{cofounder.name}</h2>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-[var(--accent)] sm:text-base">
-                  {cofounder.role}
-                </p>
-                <div className="mt-6 flex-1 space-y-4 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
-                  {cofounder.bio.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
+          <motion.p
+            className="team-hero__lead"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.14, duration: 0.5, ease: easeOutExpo }}
+          >
+            A compact leadership bench aligned to how sponsors actually buy and
+            govern work — technical depth in the room with commercial judgment
+            and field empathy.
+          </motion.p>
 
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-8">
-            {restOfTeam.map((m, i) => (
-              <motion.li
-                key={m.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.05, duration: 0.5, ease: easeOutExpo }}
-                className="flex flex-col overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] sm:rounded-3xl"
-              >
-                <div className="relative aspect-[4/3] bg-slate-200">
-                  <Image
-                    src={m.imageSrc}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent opacity-90" />
-                </div>
-                <div className="flex flex-1 flex-col px-5 pb-6 pt-2 sm:px-6">
-                  <h2 className="font-display text-lg font-semibold text-[var(--foreground)]">{m.name}</h2>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[var(--accent)]">
-                    {m.role}
-                  </p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">{m.bio}</p>
-                </div>
-              </motion.li>
+          {/* stat counters */}
+          <motion.div
+            className="team-hero__stats"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.24, duration: 0.6, ease: easeOutExpo }}
+          >
+            {stats.map((s) => (
+              <div key={s.label} className="team-stat">
+                <s.icon className="team-stat__icon" />
+                <span className="team-stat__value">{s.value}</span>
+                <span className="team-stat__label">{s.label}</span>
+              </div>
             ))}
-          </ul>
+          </motion.div>
+        </div>
+      </header>
+
+      {/* ════════════════════════════════════════════════════════════════════
+          INTRO NARRATIVE
+      ════════════════════════════════════════════════════════════════════ */}
+      <section className="team-narrative">
+        <div className="team-narrative__inner">
+          <motion.div {...fadeUp} className="team-narrative__content">
+            <div className="team-narrative__accent-line" aria-hidden="true" />
+            <p className="team-narrative__text">
+              We staff programs with principal-led teams — not endless layers of
+              account managers. Executives stay close to risk, architects stay
+              close to integration points, and program leads stay close to site
+              reality.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      <section className="bg-[var(--section-bg)] px-4 py-14 sm:px-6 sm:py-16 lg:px-10">
-        <div className="mx-auto max-w-6xl rounded-3xl border border-[var(--glass-border)] bg-[var(--card-bg)] p-8 sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
-          <motion.div {...fadeUp} className="max-w-2xl">
-            <h2 className="font-display text-xl font-semibold text-[var(--foreground)] sm:text-2xl">
-              Join a team where titles mean accountability
+      {/* ════════════════════════════════════════════════════════════════════
+          FOUNDERS DUO — side-by-side spotlight
+      ════════════════════════════════════════════════════════════════════ */}
+      <section className="team-founders">
+        <div className="team-founders__inner">
+          <motion.div {...fadeUp}>
+            <p className="team-section-label">Founding Leadership</p>
+            <h2 className="team-section-heading">
+              The visionaries behind Praestantia
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
-              We are always interested in exceptional engineers, analysts, and program leaders. Explore open roles
-              and how we hire on the careers page.
-            </p>
           </motion.div>
-          <Link
-            href="/careers"
-            className="mt-6 inline-flex items-center gap-2 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] px-6 py-3.5 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)]/40 hover:text-[var(--accent)] lg:mt-0"
-          >
-            View careers
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+
+          <div className="team-founders__grid">
+            {/* CEO */}
+            {ceo && (
+              <motion.div
+                className="founder-card"
+                initial={{ opacity: 0, x: -36, scale: 0.97 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, ease: easeOutExpo }}
+              >
+                <div className="founder-card__image-wrap">
+                  <Image
+                    src={ceo.imageSrc}
+                    alt={ceo.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="founder-card__image"
+                  />
+                  <div className="founder-card__image-overlay" />
+                  <div className="founder-card__badge">CEO</div>
+                </div>
+                <div className="founder-card__body">
+                  <h3 className="founder-card__name">{ceo.name}</h3>
+                  <p className="founder-card__role">{ceo.role}</p>
+                  <div className="founder-card__divider" />
+                  <div className="founder-card__bio">
+                    {ceo.bio.split("\n\n").map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Co-founder */}
+            {cofounder && (
+              <motion.div
+                className="founder-card"
+                initial={{ opacity: 0, x: 36, scale: 0.97 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.7,
+                  ease: easeOutExpo,
+                  delay: 0.12,
+                }}
+              >
+                <div className="founder-card__image-wrap">
+                  <Image
+                    src={cofounder.imageSrc}
+                    alt={cofounder.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="founder-card__image"
+                  />
+                  <div className="founder-card__image-overlay" />
+                  <div className="founder-card__badge">Co-Founder</div>
+                </div>
+                <div className="founder-card__body">
+                  <h3 className="founder-card__name">{cofounder.name}</h3>
+                  <p className="founder-card__role">{cofounder.role}</p>
+                  <div className="founder-card__divider" />
+                  <div className="founder-card__bio">
+                    {cofounder.bio.split("\n\n").map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════════
+          TEAM GRID — interactive hover cards with stagger
+      ════════════════════════════════════════════════════════════════════ */}
+      <section className="team-grid-section">
+        <div className="team-grid-section__inner">
+          <motion.div {...fadeUp}>
+            <p className="team-section-label">Leadership Team</p>
+            <h2 className="team-section-heading">
+              Experts driving every domain
+            </h2>
+          </motion.div>
+
+          <motion.ul className="team-grid" {...staggerContainer}>
+            {restOfTeam.map((m) => (
+              <motion.li
+                key={m.id}
+                className="team-member-card"
+                {...staggerChild}
+              >
+                <div className="team-member-card__image-wrap">
+                  <Image
+                    src={m.imageSrc}
+                    alt={m.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="team-member-card__image"
+                  />
+                  <div className="team-member-card__image-overlay" />
+                </div>
+                <div className="team-member-card__body">
+                  <h3 className="team-member-card__name">{m.name}</h3>
+                  <p className="team-member-card__role">{m.role}</p>
+                  <p className="team-member-card__bio">{m.bio}</p>
+                </div>
+                {/* hover glow ring */}
+                <div className="team-member-card__glow" aria-hidden="true" />
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════════
+          CTA — careers callout with gradient border
+      ════════════════════════════════════════════════════════════════════ */}
+      <section className="team-cta-section">
+        <div className="team-cta-section__inner">
+          <motion.div className="team-cta" {...fadeIn}>
+            <div className="team-cta__content">
+              <motion.div {...fadeUp}>
+                <h2 className="team-cta__heading">
+                  Join a team where titles mean{" "}
+                  <span className="team-hero__highlight">accountability</span>
+                </h2>
+                <p className="team-cta__text">
+                  We&apos;re always looking for exceptional engineers, analysts,
+                  and program leaders. See how we hire and explore open roles.
+                </p>
+              </motion.div>
+              <Link href="/careers" className="team-cta__button">
+                View careers
+                <ArrowRight className="team-cta__button-icon" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </article>
