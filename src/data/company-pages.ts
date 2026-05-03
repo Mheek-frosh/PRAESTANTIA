@@ -50,7 +50,7 @@ export const teamMembers: TeamMember[] = [
     name: "Ogechi Ruth Ewhe",
     role: "Co-Founder",
     bio: "Results-oriented professional currently pursuing a Master's degree in Information Technology, with a strong foundation in programming (Python, C++, Java) and telecommunications operations. Brings over a decade of cross-functional experience spanning customer care, business development, and operational leadership across multicultural environments. Demonstrated ability to analyze business processes, manage data, and support technology-driven solutions. Combines technical learning with practical experience in operations, financial record management, and stakeholder coordination. Recognized for strong analytical thinking, communication skills, and the ability to bridge business needs with emerging technology solutions.",
-    imageSrc: "/d2.jpeg",
+    imageSrc: "/W.jpeg",
   },
   {
     id: "naomi",
@@ -59,6 +59,7 @@ export const teamMembers: TeamMember[] = [
     bio: "\"Innovation distinguishes between a leader and a follower.\" Dedicated to driving operational excellence and fostering a culture of continuous growth and collaboration.",
     imageSrc: "/ed.jpeg",
   },
+  /*
   {
     id: "2",
     name: "Amara Nwosu",
@@ -95,6 +96,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Structures consortia, MoU pathways, and stakeholder forums so complex programs launch with clarity on roles, interfaces, and escalation ladders.",
     imageSrc: "/blackwoman2.png",
   },
+  */
 ];
 
 export const careersContent = {
