@@ -5,10 +5,10 @@ import Image from "next/image";
 import { Send } from "lucide-react";
 import { company, services } from "@/data/site";
 
-function IconFacebook({ className }: { className?: string }) {
+function IconTikTok({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-1.07 4.54-2.86 6-1.67 1.34-4 1.95-6.07 1.4-2.43-.63-4.34-2.73-4.66-5.2-.33-2.67.75-5.46 2.87-7.05 1.83-1.38 4.27-1.74 6.45-1.09l.06 4.25c-1.02-.45-2.22-.52-3.23-.07-1.11.49-1.89 1.55-2.01 2.75-.12 1.16.4 2.41 1.33 3.12.98.74 2.37.93 3.51.52 1.38-.49 2.24-1.88 2.26-3.34.02-3.81.01-7.61.02-11.42 0-.25-.01-.5-.01-.74z"/>
     </svg>
   );
 }
@@ -63,14 +63,18 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.tiktok.com/@officialpraestantia?_r=1&_t=ZS-963hALH0jep"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                aria-label="Facebook"
+                aria-label="TikTok"
               >
-                <IconFacebook className="h-4 w-4" />
+                <IconTikTok className="h-4 w-4" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/officialpraestantialtd?igsh=MTlmOHN0OXc4bTc0YQ%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--foreground)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
                 aria-label="Instagram"
               >
